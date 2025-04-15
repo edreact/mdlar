@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Serviços de manutenção residencial em Dourados - elétrica, hidráulica, jardinagem, montagem de móveis e muito mais!">
+  <title>Manutenção do Lar</title>
+  <style>
+    :root {
+      --primary-color: #f5d01e;
+      --text-color: #000;
+      --bg-color: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary-color);
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .btn-whatsapp {
+      margin-top: 15px;
+      background: #25d366;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+    }
+
+    .whatsapp-fixo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+
+    section {
+      padding: 30px 20px;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .services ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+    }
+
+    .testimonials blockquote {
+      background: #eee;
+      padding: 15px;
+      border-left: 5px solid var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      z-index: 1001;
+    }
+
+    .cookie-banner button {
+      background: var(--primary-color);
+      color: #000;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Manutenção do Lar</h1>
+    <p>“Cuidando do que é importante para você!”</p>
+    <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a>
+  </header>
+
+  <section class="about">
+    <h2>Sobre mim</h2>
+    <p>Sou especialista em serviços residenciais com anos de experiência atendendo em Dourados e região. Compromisso, agilidade e confiança são os pilares do meu trabalho.</p>
+  </section>
+
+  <section class="services">
+    <h2>Serviços oferecidos</h2>
+    <ul>
+      <li>🔌 Elétrica</li>
+      <li>🚿 Hidráulica</li>
+      <li>🧼 Limpeza de caixa d'água</li>
+      <li>🌿 Jardinagem</li>
+      <li>🪑 Montagem de móveis</li>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <h2>Antes e Depois</h2>
+    <img src="https://via.placeholder.com/300x200?text=Antes" alt="Antes">
+    <img src="https://via.placeholder.com/300x200?text=Depois" alt="Depois">
+  </section>
+
+  <section class="testimonials">
+    <h2>O que dizem os clientes</h2>
+    <blockquote>“Excelente profissional! Resolveu tudo com rapidez.” – Cliente Exemplo</blockquote>
+    <blockquote>“Muito educado e caprichoso, recomendo!” – Cliente Exemplo</blockquote>
+  </section>
+
+  <section class="contact">
+    <h2>Solicite um orçamento</h2>
+    <form>
+      <input type="text" name="nome" placeholder="Seu nome" required>
+      <input type="tel" name="telefone" placeholder="Seu telefone" required>
+      <textarea name="descricao" placeholder="Descreva o serviço" required></textarea>
+      <input type="file" name="anexo" accept="image/*,video/*">
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>Atendimento em Dourados, MS | WhatsApp: (67) 98182-7065</p>
+  </footer>
+
+  <a class="whatsapp-fixo" href="https://wa.me/5567981827065" target="_blank">📞</a>
+
+  <div class="cookie-banner" id="cookieBanner">
+    Este site usa cookies para melhorar sua experiência. <button onclick="document.getElementById('cookieBanner').style.display='none'">Aceitar</button>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
