@@ -51,6 +51,8 @@ tr:hover {
 .search-bar {
   margin: 20px 0;
   text-align: center;
+  margin-bottom: -50px;
+  margin-top: -10px;
 }
 
 .search-bar input {
