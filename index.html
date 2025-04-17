@@ -2,179 +2,70 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Serviços de manutenção residencial em Dourados - elétrica, hidráulica, jardinagem, montagem de móveis e muito mais!">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <meta name="MobileOptimized" content="width">
+    <meta name="description" content="Manutenção do Lar" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/slider.css">
+    <link rel="stylesheet" href="css/menu.css">
   <title>Manutenção do Lar</title>
-  <style>
-    :root {
-      --primary-color: #f5d01e;
-      --text-color: #000;
-      --bg-color: #fff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    header {
-      background: var(--primary-color);
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 2rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-
-    .btn-whatsapp {
-      margin-top: 15px;
-      background: #25d366;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      transition: background 0.3s;
-    }
-
-    .btn-whatsapp:hover {
-      background: #1ebe5d;
-    }
-
-    .whatsapp-fixo {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      text-decoration: none;
-    }
-
-    section {
-      padding: 30px 20px;
-      max-width: 1000px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
   
-    section.services{
-      background-color: black;
-      color: #f5d01e;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      color: var(--primary-color);
-    }
-
-    .services ul {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-
-    .gallery img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 8px;
-    }
-
-    .testimonials blockquote {
-      background: #eee;
-      padding: 15px;
-      border-left: 5px solid var(--primary-color);
-      margin-bottom: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button{
-      background: var(--primary-color);
-      color: #000;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    footer {
-      background: #000;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-
-    .cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #000;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      z-index: 1001;
-    }
-
-    .cookie-banner button {
-      background: var(--primary-color);
-      color: #000;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <h1>Manutenção do Lar</h1>
-    <p>“Cuidando do que é importante para você!”</p>
-    <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a>
+  <header id="header">
+    <a id="logo" href="">  Manutenção do Lar </a>
+      <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
+          <span id="hamburger"></span>
+      </button>
+      <nav id="nav"> 
+      <ul id="menu" role="menu">
+         <li><a href="/">Venda de ativos</a></li>
+         <li><a href="/">Manutenção residencial</a></li>
+         <li><a href="/">Padaria</a></li>
+         <li><a href="/">Corte e costura</a></li>
+      </ul>
+    </nav>
   </header>
+
+  <!--galeria-->
+
+  <div class="body">
+    <div class="slideshow-container">
+    <div class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img class="img" src="img/teste.jpg" style="width:100%">
+        <div class="text">Produto numero 1</div>
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img class="img" src="img/teste.jpg" style="width:100%">
+        <div class="text">Produto numero 2</div>
+    </div>
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img class="img" src="img/teste.jpg" style="width:100%">
+        <div class="text">Produto numero 3</div>
+    </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+        <br>
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</div>
+
+  <!--fim galeria-->
+
+  <p>“Cuidando do que é importante para você!”</p>
+  <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a>
+ 
 
  
   <section class="about">
@@ -234,19 +125,9 @@
     Este site usa cookies para melhorar sua experiência. <button onclick="document.getElementById('cookieBanner').style.display='none'">Aceitar</button>
   </div>
 
-  <script>
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  </script>
+  <script src="js/menu.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/slider.js"></script>
+ 
 </body>
 </html>
