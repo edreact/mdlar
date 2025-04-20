@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #f5d01e;
+    --primary-color: #ffde59;
     --text-color: #000;
     --bg-color: #fff;
   }
@@ -76,7 +76,7 @@
 
   section.services{
     background-color: black;
-    color: #f5d01e;
+    color: #ffde59;
   }
 
   section.visible {
