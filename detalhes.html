@@ -13,6 +13,7 @@
       border: 1px solid #ccc;
       border-radius: 10px;
       background-color: #fff;
+      text-align: center;
     }
     .detalhes img {
       width: 100%;
@@ -21,14 +22,14 @@
       margin-bottom: 20px;
       border-radius: 8px;
     }
-    .detalhes h1 {
+    .detalhes h2 {
       color: #333;
       margin-bottom: 10px;
     }
     .detalhes p {
       margin-bottom: 10px;
     }
-    .whatsapp-button {
+    .btn-whatsapp {
       display: inline-block;
       margin-top: 15px;
       padding: 10px 20px;
@@ -58,7 +59,9 @@
   </header>
 
   <main>
-    <section class="detalhes" id="detalhes"></section>
+    <section class="detalhes" id="detalhes">
+      <p>Carregando produto...</p>
+    </section>
   </main>
 
   <footer>
@@ -66,29 +69,43 @@
   </footer>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    const url = "https://script.google.com/macros/s/AKfycbxQNS7qveTq3daVm9vcpohPOAWs6s5PeOCZ7MNyTrfcL8piABpqCq1aoS5R84xU593m2A/exec";
+    const container = document.getElementById("detalhes");
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
 
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        const produto = data.saida.find(p => p.id === id);
-        if (produto) {
-          document.getElementById("detalhes").innerHTML = `
+    if (!id) {
+      container.innerHTML = "<p>Produto não encontrado.</p>";
+    } else {
+      fetch("https://script.google.com/macros/s/AKfycbxQNS7qveTq3daVm9vcpohPOAWs6s5PeOCZ7MNyTrfcL8piABpqCq1aoS5R84xU593m2A/exec")
+        .then((res) => res.json())
+        .then((data) => {
+          const produto = data.saida.find(item => String(item.id) === String(id));
+          if (!produto) {
+            container.innerHTML = "<p>Produto não encontrado.</p>";
+            return;
+          }
+
+          const link = `https://manutencaodolar.netlify.app/detalhes.html?id=${produto.id}`;
+          container.innerHTML = `
+            <h2>${produto.name}</h2>
             <img src="${produto.imageUrl}" alt="${produto.name}" />
-            <h1>${produto.name}</h1>
-            <p><strong>Descrição:</strong> ${produto.ProductDescription || produto.description}</p>
-            <p><strong>Valor:</strong> R$ ${produto.price}</p>
-            <a class="whatsapp-button" href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20esse%20produto%20ainda%20est%C3%A1%20dispon%C3%ADvel%3F%20https%3A%2F%2Fmanutencaodolar.netlify.app%2Fdetalhes.html%3Fid%3D${produto.id}" target="_blank">
+            <p><strong>Preço:</strong> R$ ${produto.price}</p>
+            <p><strong>Descrição:</strong> ${produto.ProductDescription}</p>
+            <p><strong>Detalhes:</strong> ${produto.ProductDetails}</p>
+            <a class="btn-whatsapp" target="_blank" href="https://wa.me/5567981827065?text=Esse%20produto%20ainda%20está%20disponível?%20${encodeURIComponent(link)}">
               Perguntar no WhatsApp
             </a>
+            <br/><br/>
+            <a href="vendas.html">← Voltar para produtos</a>
           `;
-        } else {
-          document.getElementById("detalhes").innerHTML = "<p>Produto não encontrado.</p>";
-        }
-      });
+        })
+        .catch((err) => {
+          container.innerHTML = "<p>Erro ao carregar os dados do produto.</p>";
+          console.error(err);
+        });
+    }
   </script>
+
   <script src="js/menu.js"></script>
 </body>
 </html>
