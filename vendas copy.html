@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venda de Produtos</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <style>
+    .produtos {
+      display: grid;
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+      grid-template-columns: repeat(2, 1fr); /* default: celular */
+    }
+
+    @media (min-width: 600px) {
+      .produtos {
+        grid-template-columns: repeat(3, 1fr); /* tablet */
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .produtos {
+        grid-template-columns: repeat(5, 1fr); /* computador */
+      }
+    }
+
+    .produto {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .produto:hover {
+      transform: scale(1.02);
+    }
+
+    .produto img {
+      width: 100%;
+      height: auto;
+    }
+
+    .produto-content {
+      padding: 15px;
+    }
+
+    .produto h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .produto p {
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .produto a {
+      background-color: #25d366;
+      color: white;
+      padding: 8px 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+
+    .produto a:hover {
+      background-color: #1ebe5d;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <a href="/"><img id="img-logo" src="img/logo.jpg" alt="logo"></a>
+    <a id="logo" href="/">&nbsp;Manutenção do Lar</a>
+  </header>
+
+  <main>
+    <section class="produtos visible">
+
+      <div class="produto" onclick="abrirModal('produto1')">
+        <img src="img/produto1.jpg" alt="Produto 1">
+        <div class="produto-content">
+          <h3>Furadeira Bosch 500W</h3>
+          <p>Ferramenta em ótimo estado, ideal para uso doméstico e profissional. Acompanha maleta.</p>
+        </div>
+      </div>
+
+      <div class="produto" onclick="abrirModal('produto2')">
+        <img src="img/produto2.jpg" alt="Produto 2">
+        <div class="produto-content">
+          <h3>Caixa de ferramentas Vonder</h3>
+          <p>Conjunto com diversas chaves e alicates. Em ótimas condições de uso.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Modal Produto 1 -->
+    <div id="produto1" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModal('produto1')">&times;</span>
+        <h3>Furadeira Bosch 500W</h3>
+        <img src="https://via.placeholder.com/400x250?text=Produto+1" alt="Furadeira" style="width:100%;margin:10px 0;">
+        <p>Potente e leve, ideal para pequenos e grandes reparos. Incluso maleta e brocas.</p>
+        <a href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20esse%20produto%20ainda%20est%C3%A1%20dispon%C3%ADvel%3F%20https%3A%2F%2Fseudominio.com%2Fvendas%2Fproduto1">Perguntar no WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Modal Produto 2 -->
+    <div id="produto2" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModal('produto2')">&times;</span>
+        <h3>Caixa de ferramentas Vonder</h3>
+        <img src="https://via.placeholder.com/400x250?text=Produto+2" alt="Caixa de ferramentas" style="width:100%;margin:10px 0;">
+        <p>Completa com chaves, alicates e organizador. Excelente para uso profissional ou hobby.</p>
+        <a href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20esse%20produto%20ainda%20est%C3%A1%20dispon%C3%ADvel%3F%20https%3A%2F%2Fseudominio.com%2Fvendas%2Fproduto2">Perguntar no WhatsApp</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Atendimento em Dourados, MS | WhatsApp: (67) 98182-7065</p>
+  </footer>
+
+  <script>
+    function abrirModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function fecharModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

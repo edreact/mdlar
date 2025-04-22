@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venda de Produtos</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <style>
+    .produtos {
+      display: grid;
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 600px) {
+      .produtos {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .produtos {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    .produto {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .produto:hover {
+      transform: scale(1.02);
+    }
+    .produto img {
+      width: 100%;
+      height: auto;
+    }
+    .produto-content {
+      padding: 15px;
+    }
+    .produto h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .produto p {
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .produto a {
+      background-color: #25d366;
+      color: white;
+      padding: 8px 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+    .produto a:hover {
+      background-color: #1ebe5d;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: black;
+    }
+    .filtros {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .filtros input, .filtros select {
+      padding: 10px;
+      font-size: 1rem;
+      margin: 0 10px;
+    }
+    .paginacao {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 10px;
+    }
+    .paginacao button {
+      padding: 8px 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      background: var(--primary-color);
+      cursor: pointer;
+    }
+    .paginacao button.active {
+      font-weight: bold;
+      background: #ffc107;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <a href="/"><img id="img-logo" src="img/logo.jpg" alt="logo"></a>
+    <a id="logo" href="/">&nbsp;Manutenção do Lar</a>
+    <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+      <span id="hamburger"></span>
+    </button>
+    <nav id="nav"> 
+      <ul id="menu" role="menu">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/tabelaApi.html">TABELA DE REFERÊNCIA DE PREÇOS</a></li>
+        <li><a href="/#formulario">SOLICITE UM ORÇAMENTO</a></li>
+        <li><a href="/vendas.html">VENDA DE ATIVOS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="filtros">
+      <input type="text" id="busca" placeholder="Buscar produto...">
+      <select id="ordem">
+        <option value="">Ordenar por</option>
+        <option value="az">Nome A-Z</option>
+        <option value="za">Nome Z-A</option>
+        <option value="precoAsc">Menor Preço</option>
+        <option value="precoDesc">Maior Preço</option>
+      </select>
+    </div>
+    <section id="produtos" class="produtos visible"></section>
+    <div class="paginacao" id="paginacao"></div>
+    <div id="modais"></div>
+  </main>
+
+  <footer>
+    <p>Atendimento em Dourados, MS | WhatsApp: (67) 98182-7065</p>
+  </footer>
+
+  <script>
+    const url = "https://script.google.com/macros/s/AKfycbxQNS7qveTq3daVm9vcpohPOAWs6s5PeOCZ7MNyTrfcL8piABpqCq1aoS5R84xU593m2A/exec";
+    let todosProdutos = [];
+    let produtosPorPagina = 10;
+    let paginaAtual = 1;
+
+    function renderizarProdutos(lista) {
+      const container = document.getElementById("produtos");
+      const modais = document.getElementById("modais");
+      const paginacao = document.getElementById("paginacao");
+      container.innerHTML = "";
+      
+      paginacao.innerHTML = "";
+
+      const totalPaginas = Math.ceil(lista.length / produtosPorPagina);
+      const inicio = (paginaAtual - 1) * produtosPorPagina;
+      const fim = inicio + produtosPorPagina;
+      const paginaProdutos = lista.slice(inicio, fim);
+
+      paginaProdutos.forEach(produto => {
+        const card = document.createElement("div");
+        card.className = "produto";
+        card.onclick = () => {
+          window.location.href = `detalhes.html?id=${produto.id}`;
+        };
+        card.innerHTML = `
+          <img src="${produto.imageUrl}" alt="${produto.name}">
+          <div class="produto-content">
+            <h3>${produto.name}</h3>
+            <p>${produto.description}</p>
+          </div>
+        `;
+        container.appendChild(card);
+
+        
+      });
+
+      for (let i = 1; i <= totalPaginas; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === paginaAtual) btn.classList.add("active");
+        btn.onclick = () => {
+          paginaAtual = i;
+          aplicarFiltros();
+        };
+        paginacao.appendChild(btn);
+      }
+    }
+
+    function aplicarFiltros() {
+      let lista = [...todosProdutos];
+      const busca = document.getElementById("busca").value.toLowerCase();
+      const ordem = document.getElementById("ordem").value;
+
+      if (busca) {
+        lista = lista.filter(p => p.name.toLowerCase().includes(busca));
+      }
+
+      if (ordem === "az") lista.sort((a, b) => a.name.localeCompare(b.name));
+      if (ordem === "za") lista.sort((a, b) => b.name.localeCompare(a.name));
+      if (ordem === "precoAsc") lista.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      if (ordem === "precoDesc") lista.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+
+      renderizarProdutos(lista);
+    }
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        todosProdutos = data.saida;
+        aplicarFiltros();
+      });
+
+    document.getElementById("busca").addEventListener("input", () => {
+      paginaAtual = 1;
+      aplicarFiltros();
+    });
+    document.getElementById("ordem").addEventListener("change", () => {
+      paginaAtual = 1;
+      aplicarFiltros();
+    });
+
+    function abrirModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function fecharModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

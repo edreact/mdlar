@@ -2,72 +2,39 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Serviços de manutenção residencial em Dourados - elétrica, hidráulica, jardinagem, montagem de móveis e muito mais!">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="MobileOptimized" content="width">
+    <meta name="description" content="Serviços de manutenção residencial em Dourados - elétrica, hidráulica, jardinagem, montagem de móveis e muito mais!">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <meta name="description" content="Manutenção do Lar" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <link rel="stylesheet" type="text/css" href="css/slider.css">
-    <link rel="stylesheet" href="css/menu.css">
-  <title>Manutenção do Lar</title>
-  
+    <title>Manutenção do Lar</title>
 </head>
 <body>
   <header id="header">
-    <img id="img-logo" src="img/logo.jpg" alt="logo">
-    <a id="logo" href="/">&nbsp;Manutenção do Lar </a>
+    <a href="/"><img id="img-logo" src="img/logo.jpg" alt="logo"></a>
+    <a id="logo" href="/">&nbsp;Manutenção do Lar</a>
       <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
           <span id="hamburger"></span>
       </button>
       <nav id="nav"> 
       <ul id="menu" role="menu">
-         <li><a href="/">Home</a></li>
-         <li><a href="/tabelaApi.html">Valores</a></li>
-         <li><a href="/">Galeria</a></li>
-         <li><a href="/">Loja</a></li>
+         <li><a href="/">HOME</a></li>
+         <li><a href="/tabelaApi.html">TABELA DE REFERÊNCIA DE PREÇOS</a></li>
+         <li><a href="/#formulario">SOLICITE UM ORÇAMENTO</a></li>
+         <li><a href="/">VENDA DE ATIVOS</a></li>
       </ul>
     </nav>
   </header>
-
   <!--galeria-->
-
-  <div class="body">
-    <div class="slideshow-container">
-    <div class="mySlides fade">
-        <div class="numbertext">1 / 3</div>
-        <img class="img" src="img/pint-antes.jpg" style="width:100%">
-        <div class="text">Antes</div>
-    </div>
-    <div class="mySlides fade">
-        <div class="numbertext">2 / 3</div>
-        <img class="img" src="img/pint-depois.jpg" style="width:100%">
-        <div class="text">Depois</div>
-    </div>
-    <div class="mySlides fade">
-        <div class="numbertext">3 / 3</div>
-        <img class="img" src="img/telhado.jpg" style="width:100%">
-        <div class="text">Servios em telhados</div>
-    </div>
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-        <br>
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
-</div>
-
   <!--fim galeria-->
  
  
   <section class="about">
 
-    <center><p>“Sempre cuidando do que é importante para você!”</p>
+    <center><p>“Cuidando do que é importante para você!”</p>
       <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a></center>
 
       <br/>
@@ -89,14 +56,13 @@
     </ul>
   </section>
 
-
   <!--
   <section class="gallery">
     <h2>Antes e Depois</h2>
-    <img src="https://via.placeholder.com/300x200?text=Antes" alt="Antes">
-    <img src="https://via.placeholder.com/300x200?text=Depois" alt="Depois">
+    <img src="img/pint-antes.jpg" alt="Antes">
+    <img src="img/pint-depois.jpg" alt="Depois">
   </section>
--->
+  -->
   
   <section class="testimonials">
     <h2>O que dizem os clientes</h2>
@@ -106,17 +72,17 @@
      <!--<blockquote>“Excelente profissional! Resolveu tudo com rapidez.” – Cliente Exemplo</blockquote>
     <blockquote>“Muito educado e caprichoso, recomendo!” – Cliente Exemplo</blockquote>-->
   </section>
-  
-
-  <section class="contact">
+  <section id="formulario" class="contact">
     <h2>Solicite um orçamento</h2>
     <form method="post" name="contact" netlify>
       <input type="text" name="nome" placeholder="Seu nome" required>
       <input type="tel" name="telefone" placeholder="Seu telefone" required>
+      <input type="text" name="bairro" placeholder="Seu bairro" required>
       <textarea name="descricao" placeholder="Descreva o serviço" required></textarea>
       <input type="file" name="anexo" accept="image/*,video/*">
       <button type="submit">Enviar</button>
     </form>
+    <a href="#" class="btn-scroll-top">Voltar ao topo</a>
   </section>
   <footer>
     <p>Atendimento em Dourados, MS | WhatsApp: (67) 98182-7065</p>
@@ -124,13 +90,8 @@
 
   <a class="whatsapp-fixo" href="https://wa.me/5567981827065" target="_blank">📞</a>
 
-  <div class="cookie-banner" id="cookieBanner">
-    Este site usa cookies para melhorar sua experiência. <button onclick="document.getElementById('cookieBanner').style.display='none'">Aceitar</button>
-  </div>
-
   <script src="js/menu.js"></script>
   <script src="js/script.js"></script>
-  <script src="js/slider.js"></script>
  
 </body>
 </html>
