@@ -5,121 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Venda de Produtos</title>
   <link rel="stylesheet" href="css/estilo.css">
-  <style>
-    .produtos {
-      display: grid;
-      gap: 20px;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @media (min-width: 600px) {
-      .produtos {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 1024px) {
-      .produtos {
-        grid-template-columns: repeat(5, 1fr);
-      }
-    }
-    .produto {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .produto:hover {
-      transform: scale(1.02);
-    }
-    .produto img {
-      width: 100%;
-      height: auto;
-    }
-    .produto-content {
-      padding: 15px;
-    }
-    .produto h3 {
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-    .produto p {
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-      color: #555;
-    }
-    .produto a {
-      background-color: #25d366;
-      color: white;
-      padding: 8px 10px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      font-size: 0.9rem;
-    }
-    .produto a:hover {
-      background-color: #1ebe5d;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover {
-      color: black;
-    }
-    .filtros {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .filtros input, .filtros select {
-      padding: 10px;
-      font-size: 1rem;
-      margin: 0 10px;
-    }
-    .paginacao {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-      gap: 10px;
-    }
-    .paginacao button {
-      padding: 8px 14px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 4px;
-      background: var(--primary-color);
-      cursor: pointer;
-    }
-    .paginacao button.active {
-      font-weight: bold;
-      background: #ffc107;
-    }
-  </style>
+
 </head>
 <body>
   <header id="header">
@@ -159,9 +45,9 @@
   </footer>
 
   <script>
-    const url = "https://script.google.com/macros/s/AKfycbxQNS7qveTq3daVm9vcpohPOAWs6s5PeOCZ7MNyTrfcL8piABpqCq1aoS5R84xU593m2A/exec";
+    const url = "https://script.google.com/macros/s/AKfycbwt8ykNWFXMz2RRBaI3KJfglZdxLk7UnICPAOJC6cHP6VWH_Yk9-aDV8Xlb4YfKnu14GA/exec";
     let todosProdutos = [];
-    let produtosPorPagina = 10;
+    let produtosPorPagina = 20;
     let paginaAtual = 1;
 
     function renderizarProdutos(lista) {
@@ -169,7 +55,7 @@
       const modais = document.getElementById("modais");
       const paginacao = document.getElementById("paginacao");
       container.innerHTML = "";
-      
+      modais.innerHTML = "";
       paginacao.innerHTML = "";
 
       const totalPaginas = Math.ceil(lista.length / produtosPorPagina);
@@ -180,19 +66,42 @@
       paginaProdutos.forEach(produto => {
         const card = document.createElement("div");
         card.className = "produto";
-        card.onclick = () => {
-          window.location.href = `detalhes.html?id=${produto.id}`;
-        };
+        card.setAttribute("onclick", `abrirModal('${produto.id}')`);
         card.innerHTML = `
           <img src="${produto.imageUrl}" alt="${produto.name}">
           <div class="produto-content">
-            <h3>${produto.name}</h3>
-            <p>${produto.description}</p>
+            <p><strong> ${parseFloat(produto.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p>
+
+            <p>${produto.name}</p>
           </div>
         `;
         container.appendChild(card);
 
-        
+        const modal = document.createElement("div");
+        modal.id = produto.id;
+        modal.className = "modal";
+        modal.innerHTML = `
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal('${produto.id}')">&times;</span>
+    <h3>${produto.name}</h3>
+
+    <div class="modal-slider">
+      ${[produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3]
+        .filter(url => url) // garante que só usa URLs válidas
+        .map((img, idx) => `
+          <img src="${img}" class="slide ${idx === 0 ? 'active' : ''}" alt="${produto.name}">
+        `).join('')}
+      <button class="prev" onclick="mudarSlide('${produto.id}', -1)">&#10094;</button>
+      <button class="next" onclick="mudarSlide('${produto.id}', 1)">&#10095;</button>
+    </div>
+<br>
+    <p><strong>Caracteristicas: </strong> ${produto.ProductDescription || produto.description}</p>
+     <p><strong>Descrição do produto: </strong>${produto.ProductDetails || produto.ProductDetails}</p>
+    <p><strong>Valor: </strong>${parseFloat(produto.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+    <a href="https://wa.me/5567981827065?text=Olá, esse produto ainda está disponível? https://manutencaodolar.netlify.app/vendas/${produto.id}" target="_blank">Perguntar no WhatsApp</a>
+  </div>
+`;
+        modais.appendChild(modal);
       });
 
       for (let i = 1; i <= totalPaginas; i++) {
@@ -251,6 +160,15 @@
         event.target.style.display = "none";
       }
     }
+    function mudarSlide(id, direcao) {
+  const modal = document.getElementById(id);
+  const slides = modal.querySelectorAll(".slide");
+  let atual = Array.from(slides).findIndex(s => s.classList.contains("active"));
+
+  slides[atual].classList.remove("active");
+  atual = (atual + direcao + slides.length) % slides.length;
+  slides[atual].classList.add("active");
+}
   </script>
   <script src="js/menu.js"></script>
 </body>
