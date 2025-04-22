@@ -1,213 +1,41 @@
+
 :root {
-    --primary-color: #ffde59;
-    --text-color: #000;
-    --bg-color: #fff;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-
-  body {
-    background: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-
-  header {
-    background: var(--primary-color);
-    padding: 20px;
-    text-align: center;
-  }
-
-  header h1 {
-    font-size: 2rem;
-  }
-
-  header p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-  }
-
-  .btn-whatsapp {
-    margin-top: 15px;
-    background: #25d366;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline-block;
-    transition: background 0.3s;
-  }
-
-  .btn-whatsapp:hover {
-    background: #1ebe5d;
-  }
-
-  .whatsapp-fixo {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: white;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    text-decoration: none;
-  }
-  .whatsapp-fixo:hover {
-    background-color: #1ebe5d;
-  }
-
-  section {
-    padding: 30px 20px;
-    max-width: 1000px;
-    margin: auto;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-  }
-
-  section.services{
-    background-color: black;
-    color: #ffde59;
-  }
-
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  section.contact{
-    background-color: #f9f9f9;
-    color: #333;
-  }
-
-  h2 {
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-
-  .services ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
-
-  .gallery img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
-  }
-
-  .testimonials blockquote {
-    background: #eee;
-    padding: 15px;
-    border-left: 5px solid var(--primary-color);
-    margin-bottom: 20px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  input, textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  button{
-    background: var(--primary-color);
-    color: #000;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  footer {
-    background: #000;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 40px;
-  }
-
-  .cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #000;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    z-index: 1001;
-  }
-
-  .cookie-banner button {
-    background: var(--primary-color);
-    color: #000;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  .btn-scroll-top {
-   position: fixed;
-   text-align: center;
-   bottom: -20px;
-   right: 20px;
-   text-decoration: none;
-   font-size: 1rem;
-   cursor: pointer;
-}
-.btn-scroll-top:hover {
-   background-color: #ffde59;
-   padding: 5px;
-   border-radius: 5px;
-   color: #000;
-   transition: background-color 0.3s;
+  --primary-color: #ffde59;
+  --text-color: #000;
+  --bg-color: #fff;
 }
 
-/* ESTILIZAÇÃO DO MENU */
-
-body,
-ul {
-  margin: 0px;
-  padding: 0px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-a {
-  color: #1f3c58; 
-  text-decoration: none;
-  font-family: sans-serif;
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
 }
 
-a:hover {
-  background: rgba(0, 0, 0, 0.03);
+/* ======================== */
+/* CABEÇALHO E MENU         */
+/* ======================== */
+
+header {
+  background: var(--primary-color);
+  padding: 20px;
+  text-align: center;
 }
 
-#logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-right: auto; /* mantém à esquerda */
+header h1 {
+  font-size: 2rem;
 }
 
+header p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
 
 #header {
   box-sizing: border-box;
@@ -216,7 +44,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ffde59;
+  background: var(--primary-color);
 }
 
 #menu {
@@ -234,38 +62,59 @@ a:hover {
   display: none;
   color: #1f3c58;
   font-weight: 700;
-  position: absolute; right: 1rem;
+  position: absolute;
+  right: 1rem;
 }
+
 #img-logo {
   width: 100px;
   height: 100px;
   margin-right: 10px;
 }
 
+#logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+a {
+  color: #1f3c58;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+a:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
 @media (max-width: 600px) {
   #menu {
     display: block;
     position: absolute;
-    width: 100%; /*ajustar a altura para que ao descer não cubra a logo*/
+    width: 100%;
     top: 100px;
-    right: 0px;
-    background: #ffde59;
+    right: 0;
+    background: var(--primary-color);
     transition: 0.6s;
     z-index: 1000;
-    height: 0px;
+    height: 0;
     visibility: hidden;
     overflow-y: hidden;
   }
+
   #nav.active #menu {
     height: calc(100vh - 70px);
     visibility: visible;
     overflow-y: auto;
   }
+
   #menu a {
     padding: 1rem 0;
     margin: 0 1rem;
     border-bottom: 2px solid rgba(0, 0, 0, 0.03);
   }
+
   #btn-mobile {
     display: flex;
     padding: 0.5rem 1rem;
@@ -274,107 +123,264 @@ a:hover {
     background: none;
     cursor: pointer;
     gap: 0.5rem;
-    background-color: #ffde59;
+    background-color: var(--primary-color);
   }
+
   #hamburger {
     border-top: 3px solid;
     width: 20px;
   }
+
   #hamburger::after,
-#hamburger::before {
-  content: '';
+  #hamburger::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 3px;
+    background: currentColor;
+    margin-top: 5px;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  #nav.active #hamburger {
+    border-top-color: transparent;
+  }
+
+  #nav.active #hamburger::before {
+    transform: rotate(135deg);
+  }
+
+  #nav.active #hamburger::after {
+    transform: rotate(-135deg);
+    top: -7px;
+  }
+}
+
+/* ======================== */
+/* BOTÕES FLUTUANTES       */
+/* ======================== */
+
+.btn-whatsapp {
+  margin-top: 15px;
+  background: #25d366;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+}
+
+.whatsapp-fixo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  text-decoration: none;
+}
+
+.whatsapp-fixo:hover {
+  background-color: #1ebe5d;
+}
+
+/* ======================== */
+/* CONTEÚDO GERAL           */
+/* ======================== */
+
+section {
+  padding: 30px 20px;
+  max-width: 1000px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section.services {
+  background-color: black;
+  color: var(--primary-color);
+}
+
+section.contact {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+footer {
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+/* Continua abaixo com o restante... (arquivo está longo) */
+
+/* ======================== */
+/* GALERIA / TESTEMUNHOS   */
+/* ======================== */
+
+.gallery img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+}
+
+.testimonials blockquote {
+  background: #eee;
+  padding: 15px;
+  border-left: 5px solid var(--primary-color);
+  margin-bottom: 20px;
+}
+
+/* ======================== */
+/* FORMULÁRIOS              */
+/* ======================== */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background: var(--primary-color);
+  color: #000;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-scroll-top {
+  position: fixed;
+  text-align: center;
+  bottom: -20px;
+  right: 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-scroll-top:hover {
+  background-color: #ffde59;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000;
+  transition: background-color 0.3s;
+}
+
+/* ======================== */
+/* TABELA DE CUSTOS         */
+/* ======================== */
+
+.service-table {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+.service-table h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+  min-height: 100px;
   display: block;
-  width: 20px;
-  height: 3px;
-  background: currentColor;
-  margin-top: 5px;
-  transition: 0.3s;
-  position: relative;
-} /* ← chave de fechamento faltante */
-
-#nav.active #hamburger {
-  border-top-color: transparent;
 }
-
-#nav.active #hamburger::before {
-  transform: rotate(135deg);
-}
-
-#nav.active #hamburger::after {
-  transform: rotate(-135deg);
-  top: -7px;
-}
-
-
-/* ESTILIZAÇÃO DA TABELA DE CUSTOS*/
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
+  table-layout: auto;
+  min-width: 600px;
 }
-
 th, td {
-  padding: 10px;
+  padding: 12px 15px;
   text-align: left;
   border: 1px solid #ddd;
+  vertical-align: top;
+  word-break: break-word;
 }
-
 th {
-  background-color: #ffde59;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-
 tr:hover {
   background-color: #ddd;
 }
+#serviceTable th:nth-child(1) { width: 30%; }
+#serviceTable th:nth-child(2) { width: 50%; }
+#serviceTable th:nth-child(3) { width: 20%; }
 
 /* Responsividade */
 @media (max-width: 768px) {
   table {
     font-size: 14px;
   }
-
   th, td {
     padding: 8px;
   }
 }
 
-/* Adicionando um estilo para o título da seção */
-.service-table {
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
+/* ======================== */
+/* FILTRO DE BUSCA          */
+/* ======================== */
 
-.service-table h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-/* Estilos para o campo de busca */
 .search-bar {
   margin: 20px 0;
   text-align: center;
-  margin-bottom: -50px;
-  margin-top: -10px;
 }
-
 .search-bar input {
   padding: 10px;
   font-size: 16px;
   width: 80%;
   max-width: 400px;
-  border: 2px solid #ffde59;
+  border: 2px solid var(--primary-color);
   border-radius: 4px;
 }
-}
 
-/* Estilos para a página vendas */
+/* ======================== */
+/* PRODUTOS À VENDA         */
+/* ======================== */
 
 .produtos {
   display: grid;
@@ -401,16 +407,18 @@ tr:hover {
   background: #fff;
   transition: transform 0.3s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .produto:hover {
   transform: scale(1.02);
 }
 .produto img {
   width: 100%;
-  height: 180px; /* altura fixa */
-  object-fit: cover; /* mantém proporção e recorta */
+  height: 180px;
+  object-fit: cover;
 }
-
 .produto-content {
   padding: 15px;
   display: flex;
@@ -421,16 +429,9 @@ tr:hover {
 .produto-content p {
   flex-grow: 1;
 }
-
-
 .produto h3 {
   font-size: 1rem;
   margin-bottom: 10px;
-}
-.produto {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 .produto a {
   background-color: #25d366;
@@ -444,6 +445,11 @@ tr:hover {
 .produto a:hover {
   background-color: #1ebe5d;
 }
+
+/* ======================== */
+/* MODAIS E SLIDES          */
+/* ======================== */
+
 .modal {
   display: none;
   position: fixed;
@@ -461,15 +467,14 @@ tr:hover {
   padding: 20px;
   border-radius: 10px;
   width: 95%;
-  max-width: auto; /* ou 900px, se quiser ainda maior */
+  max-width: 800px;
 }
-
 .modal-content img {
   border-radius: 10px;
   margin-bottom: 15px;
 }
 .modal-content a {
-  display: block; /* muda para ocupar linha toda */
+  display: block;
   width: max-content;
   background-color: #25d366;
   color: white;
@@ -479,12 +484,11 @@ tr:hover {
   text-align: center;
   font-size: 0.9rem;
   font-weight: bold;
-  margin: 20px auto 0; /* centraliza horizontalmente */
+  margin: 20px auto 0;
 }
 .modal-content a:hover {
   background-color: #1ebe5d;
 }
-
 .modal-slider {
   position: relative;
   text-align: center;
@@ -499,7 +503,6 @@ tr:hover {
   display: none;
   object-fit: contain;
 }
-
 .modal-slider img.active {
   display: block;
 }
@@ -518,7 +521,6 @@ tr:hover {
 }
 .modal-slider .prev { left: 10px; }
 .modal-slider .next { right: 10px; }
-
 .modal-content h3 {
   margin-bottom: 10px;
   font-size: 1.4rem;
@@ -528,11 +530,6 @@ tr:hover {
   font-size: 1rem;
   line-height: 1.5;
 }
-.modal-content a {
-  margin-top: 15px;
-}
-
-
 .close {
   color: #aaa;
   float: right;
@@ -543,6 +540,11 @@ tr:hover {
 .close:hover {
   color: black;
 }
+
+/* ======================== */
+/* PAGINAÇÃO E FILTROS      */
+/* ======================== */
+
 .filtros {
   text-align: center;
   margin-top: 30px;
@@ -570,4 +572,3 @@ tr:hover {
   font-weight: bold;
   background: #ffc107;
 }
-
