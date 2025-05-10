@@ -108,7 +108,7 @@
     <p><strong>Caracteristicas: </strong> ${produto.ProductDescription || produto.description}</p>
      <p><strong>Descrição do produto: </strong>${produto.ProductDetails || produto.ProductDetails}</p>
     <p><strong>Valor: </strong>${parseFloat(produto.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-    <a href="https://wa.me/5567981827065?text=Olá, isso ainda está disponível? %0D%0DProduto: ${produto.name}%0D%0DCódigo: ${produto.id}
+    <a href="https://wa.me/5567981827065?text=Olá, isso ainda está disponível? %0D%0DItem: ${produto.name}%0DCódigo: ${produto.id}
 " target="_blank">Chama no Whatsapp</a>
   </div>
 `;
