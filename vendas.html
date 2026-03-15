@@ -10,36 +10,33 @@
     })(window,document,'script','dataLayer','GTM-KFVQDPHD');</script>
     <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17059370546">
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17059370546"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      
       gtag('config', 'AW-17059370546');
+      gtag('config', 'AW-983191132');
     </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-983191132">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'AW-983191132');
-  </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="MobileOptimized" content="width">
-    <meta name="description" content="Serviços de manutenção residencial em Dourados - elétrica, hidráulica, jardinagem, montagem de móveis e muito mais!">
+    <meta name="description" content="Produtos e ativos à venda em Dourados. Itens novos e usados de manutenção residencial.">
+    <meta name="theme-color" content="#ffde59">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Produtos e Ativos à venda | Manutenção do Lar">
+    <meta property="og:description" content="Produtos e ativos disponíveis para venda em Dourados. Fale direto no WhatsApp.">
+    <meta property="og:image" content="https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <meta name="description" content="Manutenção do Lar" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7620069477591767"
      crossorigin="anonymous"></script>
-    <title>Manutenção do Lar</title>
+    <title>Produtos e Ativos | Manutenção do Lar</title>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -53,7 +50,7 @@
       <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
           <span id="hamburger"></span>
       </button>
-      <ul id="menu" role="menu">
+      <ul id="menu">
          <li><a href="/">Home</a></li>
          <li><a href="/#formulario">Solicite um orçamento</a></li>
          <li><a href="vendas.html">Serviços e Ativos</a></li>
@@ -62,6 +59,16 @@
   </header>
 
   <main>
+    <section class="hero hero-vendas" aria-label="Produtos e ativos">
+      <div class="hero-content">
+        <h1>Produtos e ativos à venda</h1>
+        <p class="hero-subtitle">Itens novos e usados, ferramentas e materiais que sobraram de serviços. Viu algo interessante? Chame no WhatsApp.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#produtos">Ver produtos</a>
+          <a class="btn btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
     <div class="filtros">
       <input type="text" id="busca" placeholder="Buscar produto...">
       <select id="ordem">
@@ -79,9 +86,9 @@
   
 
   <footer>
-    <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a>
+    <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp</a>
     <br><br>
-        <p>Atendimento em Dourados, MS | WhatsApp: (67) 98182-7065</p>
+        <p>Atendimento em Dourados, MS | WhatsApp: <a href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">(67) 98182-7065</a> | Telefone: <a href="tel:+5567981827065">(67) 98182-7065</a></p>
     <br><br>
   </footer>
 
@@ -90,6 +97,29 @@
     let todosProdutos = [];
     let produtosPorPagina = 20;
     let paginaAtual = 1;
+    let produtoInicial = null;
+    const tituloBase = document.title;
+    const ogDefaults = {
+      title: document.querySelector('meta[property="og:title"]')?.getAttribute("content") || "",
+      description: document.querySelector('meta[property="og:description"]')?.getAttribute("content") || "",
+      image: document.querySelector('meta[property="og:image"]')?.getAttribute("content") || ""
+    };
+
+    function linkProduto(id) {
+      const rel = `produtos/${encodeURIComponent(id)}.html`;
+      if (location.origin && location.origin !== "null") {
+        return new URL(rel, location.origin + location.pathname.replace(/[^/]*$/, "")).toString();
+      }
+      return rel;
+    }
+
+    function formatarPreco(valor) {
+      return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function produtoTextoCompartilhar(produto) {
+      return `Item: ${produto.name}\nValor: ${formatarPreco(produto.price)}\nLink: ${linkProduto(produto.id)}`;
+    }
 
     function renderizarProdutos(lista) {
       const container = document.getElementById("produtos");
@@ -105,15 +135,16 @@
       const paginaProdutos = lista.slice(inicio, fim);
 
       paginaProdutos.forEach(produto => {
+        const imagens = [produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3].filter(Boolean);
         const card = document.createElement("div");
         card.className = "produto";
         card.setAttribute("onclick", `abrirModal('${produto.id}')`);
         card.innerHTML = `
           <img src="${produto.imageUrl}" alt="${produto.name}">
           <div class="produto-content">
-            <p><strong> ${parseFloat(produto.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p>
-
+            <p><strong>${formatarPreco(produto.price)}</strong></p>
             <p>${produto.name}</p>
+            ${imagens.length > 1 ? `<span class="produto-badge">+${imagens.length - 1} foto(s)</span>` : ""}
           </div>
         `;
         container.appendChild(card);
@@ -127,20 +158,31 @@
     <h3>${produto.name}</h3>
 
     <div class="modal-slider">
-      ${[produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3]
-        .filter(url => url) // garante que só usa URLs válidas
+      ${imagens
         .map((img, idx) => `
           <img src="${img}" class="slide ${idx === 0 ? 'active' : ''}" alt="${produto.name}">
         `).join('')}
       <button class="prev" onclick="mudarSlide('${produto.id}', -1)">&#10094;</button>
       <button class="next" onclick="mudarSlide('${produto.id}', 1)">&#10095;</button>
     </div>
+    ${imagens.length > 1 ? `
+      <div class="modal-thumbs" role="tablist" aria-label="Outras fotos">
+        ${imagens.map((img, idx) => `
+          <button type="button" class="thumb ${idx === 0 ? 'active' : ''}" onclick="selecionarSlide('${produto.id}', ${idx})">
+            <img src="${img}" alt="${produto.name} - foto ${idx + 1}">
+          </button>
+        `).join("")}
+      </div>
+    ` : ""}
 <br>
-    <p><strong>Caracteristicas: </strong> ${produto.ProductDescription || produto.description}</p>
-     <p><strong>Descrição do produto: </strong>${produto.ProductDetails || produto.ProductDetails}</p>
-    <p><strong>Valor: </strong>${parseFloat(produto.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-    <a href="https://wa.me/5567981827065?text=Olá, esse item ainda está disponível?%0a%0aItem: ${produto.name}%0aCódigo: ${produto.id}
-" target="_blank">Chama no Whatsapp</a>
+    <p><strong>Características: </strong>${produto.ProductDescription || produto.description || "Consulte detalhes no WhatsApp."}</p>
+    <p><strong>Descrição do produto: </strong>${produto.ProductDetails || produto.details || "Consulte detalhes no WhatsApp."}</p>
+    <p><strong>Valor: </strong>${formatarPreco(produto.price)}</p>
+
+    <div class="share-row">
+      <a class="btn-whatsapp" href="https://wa.me/5567981827065?text=${encodeURIComponent('Olá, esse item ainda está disponível?\\n\\n' + produtoTextoCompartilhar(produto) + '\\nCódigo: ' + produto.id)}" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+      <button type="button" class="btn-share" onclick="compartilharProduto('${produto.id}')">Compartilhar</button>
+    </div>
   </div>
 `;
         modais.appendChild(modal);
@@ -179,7 +221,16 @@
       .then(res => res.json())
       .then(data => {
         todosProdutos = data.saida;
+        if (produtoInicial) {
+          const idx = todosProdutos.findIndex(p => p.id === produtoInicial);
+          if (idx >= 0) {
+            paginaAtual = Math.floor(idx / produtosPorPagina) + 1;
+          }
+        }
         aplicarFiltros();
+        if (produtoInicial) {
+          abrirModal(produtoInicial);
+        }
       });
 
     document.getElementById("busca").addEventListener("input", () => {
@@ -192,25 +243,88 @@
     });
 
     function abrirModal(id) {
-      document.getElementById(id).style.display = 'block';
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.style.display = 'block';
+      const produto = todosProdutos.find(p => p.id === id);
+      if (produto) {
+        document.title = `${produto.name} | Manutenção do Lar`;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        const ogImage = document.querySelector('meta[property="og:image"]');
+        if (ogTitle) ogTitle.setAttribute("content", produto.name);
+        if (ogDesc) ogDesc.setAttribute("content", produto.ProductDescription || produto.description || "Produto disponível para venda.");
+        if (ogImage) ogImage.setAttribute("content", produto.imageUrl);
+        history.replaceState(null, "", linkProduto(id));
+      }
     }
     function fecharModal(id) {
       document.getElementById(id).style.display = 'none';
+      history.replaceState(null, "", location.pathname);
+      document.title = tituloBase;
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogTitle) ogTitle.setAttribute("content", ogDefaults.title);
+      if (ogDesc) ogDesc.setAttribute("content", ogDefaults.description);
+      if (ogImage) ogImage.setAttribute("content", ogDefaults.image);
     }
     window.onclick = function(event) {
       if (event.target.classList.contains('modal')) {
-        event.target.style.display = "none";
+        fecharModal(event.target.id);
       }
     }
     function mudarSlide(id, direcao) {
-  const modal = document.getElementById(id);
-  const slides = modal.querySelectorAll(".slide");
-  let atual = Array.from(slides).findIndex(s => s.classList.contains("active"));
+      const modal = document.getElementById(id);
+      const slides = modal.querySelectorAll(".slide");
+      if (!slides.length) return;
+      let atual = Array.from(slides).findIndex(s => s.classList.contains("active"));
 
-  slides[atual].classList.remove("active");
-  atual = (atual + direcao + slides.length) % slides.length;
-  slides[atual].classList.add("active");
-}
+      slides[atual].classList.remove("active");
+      atual = (atual + direcao + slides.length) % slides.length;
+      slides[atual].classList.add("active");
+      atualizarThumbs(modal, atual);
+    }
+
+    function selecionarSlide(id, idx) {
+      const modal = document.getElementById(id);
+      const slides = modal.querySelectorAll(".slide");
+      if (!slides.length) return;
+      slides.forEach(s => s.classList.remove("active"));
+      if (slides[idx]) slides[idx].classList.add("active");
+      atualizarThumbs(modal, idx);
+    }
+
+    function atualizarThumbs(modal, idx) {
+      const thumbs = modal.querySelectorAll(".thumb");
+      thumbs.forEach(t => t.classList.remove("active"));
+      if (thumbs[idx]) thumbs[idx].classList.add("active");
+    }
+
+    async function compartilharProduto(id) {
+      const produto = todosProdutos.find(p => p.id === id);
+      if (!produto) return;
+      const shareData = {
+        title: produto.name,
+        text: produtoTextoCompartilhar(produto),
+        url: linkProduto(produto.id)
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (err) {}
+      }
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        alert("Link copiado para a área de transferência.");
+      } catch (err) {
+        window.open(shareData.url, "_blank");
+      }
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    produtoInicial = params.get("produto");
   </script>
   <script src="js/menu.js"></script>
 </body>

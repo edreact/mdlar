@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Instalação de varões, trilho suíço e persianas">
+  <meta name="theme-color" content="#ffde59">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Instalação de cortinas | ManutenÃ§Ã£o do Lar">
+  <meta property="og:description" content="Instalação de varões, trilho suíço e persianas">
+  <meta property="og:image" content="https://res.cloudinary.com/dknntq75l/image/upload/v1773434158/galeria_imagens/lbvozfcsp0td97azqsqm.jpg">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="stylesheet" href="../css/estilo.css">
+  <title>Instalação de cortinas | ManutenÃ§Ã£o do Lar</title>
+</head>
+<body>
+  <header id="header">
+    <a href="/"><img id="img-logo" src="../img/logo.jpg" alt="logo"></a>
+    <a id="logo" href="/">ManutenÃ§Ã£o do Lar</a>
+    <nav id="nav">
+      <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
+          <span id="hamburger"></span>
+      </button>
+      <ul id="menu">
+         <li><a href="/">Home</a></li>
+         <li><a href="/#formulario">Solicite um orÃ§amento</a></li>
+         <li><a href="../vendas.html">ServiÃ§os e Ativos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="product-page">
+    <section class="product-hero visible">
+      <h1>Instalação de cortinas</h1>
+      <p class="product-meta"><strong>Valor:</strong> R$ 0,00</p>
+      <div class="product-gallery">
+        <div>
+          <img id="main-image" src="https://res.cloudinary.com/dknntq75l/image/upload/v1773434158/galeria_imagens/lbvozfcsp0td97azqsqm.jpg" alt="Instalação de cortinas">
+        </div>
+        <div class="product-thumbs">
+          <button type="button" data-img="https://res.cloudinary.com/dknntq75l/image/upload/v1773434158/galeria_imagens/lbvozfcsp0td97azqsqm.jpg" aria-label="Ver foto 1"><img src="https://res.cloudinary.com/dknntq75l/image/upload/v1773434158/galeria_imagens/lbvozfcsp0td97azqsqm.jpg" alt="Instalação de cortinas - foto 1"></button><button type="button" data-img="https://res.cloudinary.com/dknntq75l/image/upload/v1773434158/galeria_imagens/lbvozfcsp0td97azqsqm.jpg" aria-label="Ver foto 2"><img src="https://res.cloudinary.com/dknntq75l/image/upload/v1773434158/galeria_imagens/lbvozfcsp0td97azqsqm.jpg" alt="Instalação de cortinas - foto 2"></button><button type="button" data-img="https://res.cloudinary.com/dknntq75l/image/upload/v1773434162/galeria_imagens/z5ctwaenckphp2w36vah.jpg" aria-label="Ver foto 3"><img src="https://res.cloudinary.com/dknntq75l/image/upload/v1773434162/galeria_imagens/z5ctwaenckphp2w36vah.jpg" alt="Instalação de cortinas - foto 3"></button><button type="button" data-img="https://res.cloudinary.com/dknntq75l/image/upload/v1773434167/galeria_imagens/yezdmit8uirygvne1oqn.jpg" aria-label="Ver foto 4"><img src="https://res.cloudinary.com/dknntq75l/image/upload/v1773434167/galeria_imagens/yezdmit8uirygvne1oqn.jpg" alt="Instalação de cortinas - foto 4"></button>
+        </div>
+      </div>
+      <div class="product-meta">
+        <p><strong>CaracterÃ­sticas:</strong> Instalação de varões, trilho suíço e persianas</p>
+        
+      </div>
+      <div class="product-cta">
+        <a class="btn btn-whatsapp" href="https://wa.me/5567981827065?text=Ol%C3%83%C2%A1%2C%20esse%20item%20ainda%20est%C3%83%C2%A1%20dispon%C3%83%C2%ADvel%3F%0A%0AItem%3A%20Instala%C3%A7%C3%A3o%20de%20cortinas%0AC%C3%83%C2%B3digo%3A%20251441c8" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+        <a class="btn btn-primary" href="../vendas.html">Ver todos os produtos</a>
+      </div>
+      <a class="product-back" href="../vendas.html">Voltar para a lista</a>
+    </section>
+  </main>
+
+  <script src="../js/menu.js" defer></script>
+  <script>
+    const mainImage = document.getElementById("main-image");
+    document.querySelectorAll(".product-thumbs button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        mainImage.src = btn.getAttribute("data-img");
+      });
+    });
+  </script>
+</body>
+</html>
