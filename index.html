@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <meta charset="UTF-8" />
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,34 +10,22 @@
     })(window,document,'script','dataLayer','GTM-KFVQDPHD');</script>
     <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17059370546">
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17059370546"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'AW-17059370546');
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-983191132">
-    </script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
       gtag('config', 'AW-983191132');
     </script>
-    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="MobileOptimized" content="width">
     <meta name="description" content="Serviços de manutenção residencial em Dourados - elétrica, hidráulica, jardinagem, montagem de móveis e muito mais!">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <meta name="description" content="Manutenção e pequenos reparos residenciais" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <link href="https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg" rel="icon" type="image/img">
+    <link href="https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg" rel="icon" type="image/jpeg">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7620069477591767"
      crossorigin="anonymous"></script>
     <title>Manutenção do Lar</title>
@@ -54,7 +43,7 @@
       <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
           <span id="hamburger"></span>
       </button>
-      <ul id="menu" role="menu">
+      <ul id="menu">
          <li><a href="/">Home</a></li>
          <li><a href="/#formulario">Solicite um orçamento</a></li>
          <li><a href="vendas.html">Serviços e Ativos</a></li>
@@ -65,9 +54,9 @@
   <section class="about">
     <h2>Sobre nós</h2>
     <p>Prestamos serviços residenciais com anos de experiência atendendo em Dourados e região. Compromisso, agilidade e confiança são os pilares do nosso trabalho.</p>
-     <center>
-       <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a>
-     </center>
+    <p style="text-align:center">
+      <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp</a>
+    </p>
   </section>
 
 
@@ -102,7 +91,8 @@
   </section>
   <section id="formulario" class="contact">
     <h2>Solicite um orçamento</h2>
-    <form method="post" action="/success" name="contact" netlify>
+    <form method="post" action="/success.html" name="contact" data-netlify="true" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="contact">
       <input type="text" name="nome" placeholder="Seu nome" required>
       <input type="tel" name="telefone" placeholder="Seu telefone" required>
       <input type="text" name="bairro" placeholder="Seu bairro" required>
@@ -116,13 +106,13 @@
     
   </section>
   <footer>
-    <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank">Fale pelo WhatsApp</a>
+    <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp</a>
     <br><br>
         <p>Atendimento em Dourados, MS | WhatsApp: (67) 98182-7065</p>
     <br><br>
   </footer>
 
-  <a class="whatsapp-fixo" href="https://wa.me/5567981827065" target="_blank">📞</a>
+  <a class="whatsapp-fixo" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">📞</a>
 
   <script src="js/menu.js"></script>
   <script src="js/script.js"></script>
