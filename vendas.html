@@ -181,7 +181,6 @@
 
     <div class="share-row">
       <a class="btn-whatsapp" href="https://wa.me/5567981827065?text=${encodeURIComponent('Olá, esse item ainda está disponível?\\n\\n' + produtoTextoCompartilhar(produto) + '\\nCódigo: ' + produto.id)}" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
-      <button type="button" class="btn-share" onclick="compartilharProduto('${produto.id}')">Compartilhar</button>
     </div>
   </div>
 `;
@@ -299,28 +298,6 @@
       const thumbs = modal.querySelectorAll(".thumb");
       thumbs.forEach(t => t.classList.remove("active"));
       if (thumbs[idx]) thumbs[idx].classList.add("active");
-    }
-
-    async function compartilharProduto(id) {
-      const produto = todosProdutos.find(p => p.id === id);
-      if (!produto) return;
-      const shareData = {
-        title: produto.name,
-        text: produtoTextoCompartilhar(produto),
-        url: linkProduto(produto.id)
-      };
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-          return;
-        } catch (err) {}
-      }
-      try {
-        await navigator.clipboard.writeText(shareData.url);
-        alert("Link copiado para a área de transferência.");
-      } catch (err) {
-        window.open(shareData.url, "_blank");
-      }
     }
 
     const params = new URLSearchParams(window.location.search);
