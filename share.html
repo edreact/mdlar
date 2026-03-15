@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Detalhes do produto">
+  <meta name="theme-color" content="#ffde59">
+  <meta property="og:type" content="product">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Produto | Manutenção do Lar">
+  <meta property="og:description" content="Detalhes do produto">
+  <meta property="og:image" content="https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/estilo.css">
+  <title>Produto | Manutenção do Lar</title>
+</head>
+<body>
+  <header id="header">
+    <a href="/"><img id="img-logo" src="img/logo.jpg" alt="logo"></a>
+    <a id="logo" href="/">Manutenção do Lar</a>
+    <nav id="nav">
+      <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
+          <span id="hamburger"></span>
+      </button>
+      <ul id="menu">
+         <li><a href="/">Home</a></li>
+         <li><a href="/#formulario">Solicite um orçamento</a></li>
+         <li><a href="vendas.html">Serviços e Ativos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="product-page">
+    <section class="product-hero visible">
+      <h1 id="product-name">Carregando produto...</h1>
+      <p class="product-meta"><strong>Valor:</strong> <span id="product-price">--</span></p>
+      <div class="product-gallery">
+        <div>
+          <img id="main-image" src="https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg" alt="Produto">
+        </div>
+        <div class="product-thumbs" id="product-thumbs"></div>
+      </div>
+      <div class="product-meta">
+        <p><strong>Características:</strong> <span id="product-desc">--</span></p>
+        <p><strong>Descrição:</strong> <span id="product-details">--</span></p>
+      </div>
+      <div class="product-cta">
+        <a class="btn btn-whatsapp" id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+        <a class="btn btn-primary" href="vendas.html">Ver todos os produtos</a>
+      </div>
+      <a class="product-back" href="vendas.html">Voltar para a lista</a>
+    </section>
+  </main>
+
+  <script src="js/menu.js" defer></script>
+  <script>
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwt8ykNWFXMz2RRBaI3KJfglZdxLk7UnICPAOJC6cHP6VWH_Yk9-aDV8Xlb4YfKnu14GA/exec";
+    const params = new URLSearchParams(window.location.search);
+    const produtoId = params.get("id");
+
+    function formatarPreco(valor) {
+      return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function montarMensagem(produto) {
+      return [
+        "Olá, esse item ainda está disponível?",
+        `Nome do item: ${produto.name}`,
+        `Valor: ${formatarPreco(produto.price)}`,
+        `Código do produto: ${produto.id}`,
+        `Link: ${window.location.href}`
+      ].join("\\n");
+    }
+
+    function atualizarMeta(produto, imagem) {
+      document.title = `${produto.name} | Manutenção do Lar`;
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogTitle) ogTitle.setAttribute("content", produto.name);
+      if (ogDesc) ogDesc.setAttribute("content", produto.ProductDescription || produto.description || "Produto disponível para venda.");
+      if (ogImage) ogImage.setAttribute("content", imagem);
+    }
+
+    function renderizar(produto) {
+      const imagens = [produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3].filter(Boolean);
+      const imagemPrincipal = imagens[0] || "https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg";
+
+      document.getElementById("product-name").textContent = produto.name;
+      document.getElementById("product-price").textContent = formatarPreco(produto.price);
+      document.getElementById("product-desc").textContent = produto.ProductDescription || produto.description || "Consulte detalhes no WhatsApp.";
+      document.getElementById("product-details").textContent = produto.ProductDetails || produto.details || "Consulte detalhes no WhatsApp.";
+
+      const mainImage = document.getElementById("main-image");
+      mainImage.src = imagemPrincipal;
+      mainImage.alt = produto.name;
+
+      const thumbs = document.getElementById("product-thumbs");
+      thumbs.innerHTML = "";
+      imagens.forEach((img, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("aria-label", `Ver foto ${idx + 1}`);
+        const im = document.createElement("img");
+        im.src = img;
+        im.alt = `${produto.name} - foto ${idx + 1}`;
+        btn.appendChild(im);
+        btn.addEventListener("click", () => {
+          mainImage.src = img;
+        });
+        thumbs.appendChild(btn);
+      });
+
+      const msg = montarMensagem(produto);
+      document.getElementById("whatsapp-link").href = `https://wa.me/5567981827065?text=${encodeURIComponent(msg)}`;
+      atualizarMeta(produto, imagemPrincipal);
+    }
+
+    if (!produtoId) {
+      document.getElementById("product-name").textContent = "Produto não encontrado";
+    } else {
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+          const produto = (data.saida || []).find(p => String(p.id) === String(produtoId));
+          if (!produto) {
+            document.getElementById("product-name").textContent = "Produto não encontrado";
+            return;
+          }
+          renderizar(produto);
+        })
+        .catch(() => {
+          document.getElementById("product-name").textContent = "Não foi possível carregar o produto";
+        });
+    }
+  </script>
+</body>
+</html>

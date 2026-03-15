@@ -106,7 +106,7 @@
     };
 
     function linkProduto(id) {
-      const rel = `produtos/${encodeURIComponent(id)}.html`;
+      const rel = `share.html?id=${encodeURIComponent(id)}`;
       if (location.origin && location.origin !== "null") {
         return new URL(rel, location.origin + location.pathname.replace(/[^/]*$/, "")).toString();
       }
@@ -118,7 +118,13 @@
     }
 
     function produtoTextoCompartilhar(produto) {
-      return `Item: ${produto.name}\nValor: ${formatarPreco(produto.price)}\nLink: ${linkProduto(produto.id)}`;
+      return [
+        "Olá, esse item ainda está disponível?",
+        `Nome do item: ${produto.name}`,
+        `Valor: ${formatarPreco(produto.price)}`,
+        `Código do produto: ${produto.id}`,
+        `Link: ${linkProduto(produto.id)}`
+      ].join("\n");
     }
 
     function renderizarProdutos(lista) {
@@ -180,7 +186,7 @@
     <p><strong>Valor: </strong>${formatarPreco(produto.price)}</p>
 
     <div class="share-row">
-      <a class="btn-whatsapp" href="https://wa.me/5567981827065?text=${encodeURIComponent('Olá, esse item ainda está disponível?\\n\\n' + produtoTextoCompartilhar(produto) + '\\nCódigo: ' + produto.id)}" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+      <a class="btn-whatsapp" href="https://wa.me/5567981827065?text=${encodeURIComponent(produtoTextoCompartilhar(produto))}" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
     </div>
   </div>
 `;
