@@ -138,7 +138,7 @@
       const paginaProdutos = lista.slice(inicio, fim);
 
       paginaProdutos.forEach(produto => {
-        const imagens = [produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3].filter(Boolean);
+        const imagens = [produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3, produto.imageUrl4].filter(Boolean);
         const card = document.createElement("div");
         card.className = "produto";
         card.setAttribute("onclick", `abrirModal('${produto.id}')`);
