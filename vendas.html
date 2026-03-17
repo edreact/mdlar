@@ -112,7 +112,9 @@
     }
 
     function formatarPreco(valor) {
-      return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      const num = Number(String(valor || "").replace(/\./g, "").replace(",", "."));
+      if (!isFinite(num) || num <= 0) return "";
+      return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
     function limparTextoProduto(texto) {
@@ -126,12 +128,12 @@
     }
 
     function produtoTextoCompartilhar(produto) {
+      const nome = produto.name || "";
+      const codigo = produto.id || "";
       return [
-        "Olá, esse item ainda está disponível?",
-        `Nome do item: ${produto.name}`,
-        `Valor: ${formatarPreco(produto.price)}`,
-        `Código do produto: ${produto.id}`,
-        `Link: ${linkProduto(produto.id)}`
+        `Olá, o item, *${nome}* _(Cód. ${codigo}),_ ainda está disponível?`,
+        "",
+        `Link do produto: ${linkProduto(produto.id)}`
       ].join("\n");
     }
 
