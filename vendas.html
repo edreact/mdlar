@@ -149,14 +149,21 @@
       const paginaProdutos = lista.slice(inicio, fim);
 
       paginaProdutos.forEach(produto => {
-        const imagens = Array.from(new Set([produto.imageUrl, produto.imageUrl2, produto.imageUrl3, produto.imageUrl4])).filter(Boolean);
+        const imagens = Array.from(new Set([
+          produto.imagePerfil,
+          produto.imageUrl1,
+          produto.imageUrl2,
+          produto.imageUrl3,
+          produto.imageUrl4
+        ])).filter(Boolean);
         const desc = limparTextoProduto(produto.ProductDescription || produto.description);
         const detalhes = limparTextoProduto(produto.ProductDetails || produto.details);
+        const imagemPrincipal = produto.imagePerfil || produto.imageUrl1 || produto.imageUrl2 || produto.imageUrl3 || produto.imageUrl4;
         const card = document.createElement("div");
         card.className = "produto";
         card.setAttribute("onclick", `abrirModal('${produto.id}')`);
         card.innerHTML = `
-          <img src="${produto.imageUrl}" alt="${produto.name}">
+          <img src="${imagemPrincipal}" alt="${produto.name}">
           <div class="produto-content">
             <p><strong>${formatarPreco(produto.price)}</strong></p>
             <p>${produto.name}</p>
@@ -269,7 +276,7 @@
         const ogImage = document.querySelector('meta[property="og:image"]');
         if (ogTitle) ogTitle.setAttribute("content", produto.name);
         if (ogDesc) ogDesc.setAttribute("content", produto.ProductDescription || produto.description || "Produto disponível para venda.");
-        if (ogImage) ogImage.setAttribute("content", produto.imageUrl);
+        if (ogImage) ogImage.setAttribute("content", produto.imagePerfil || produto.imageUrl1 || produto.imageUrl2 || produto.imageUrl3 || produto.imageUrl4);
         history.replaceState(null, "", linkProduto(id));
       }
     }

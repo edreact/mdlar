@@ -92,7 +92,13 @@
     }
 
     function renderizar(produto) {
-      const imagens = Array.from(new Set([produto.imageUrl, produto.imageUrl2, produto.imageUrl3, produto.imageUrl4])).filter(Boolean);
+      const imagens = Array.from(new Set([
+        produto.imagePerfil,
+        produto.imageUrl1,
+        produto.imageUrl2,
+        produto.imageUrl3,
+        produto.imageUrl4
+      ])).filter(Boolean);
       const imagemPrincipal = imagens[0] || "https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg";
 
       document.getElementById("product-name").textContent = produto.name;
