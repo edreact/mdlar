@@ -52,7 +52,7 @@
 
   <script src="js/menu.js" defer></script>
   <script>
-    const apiUrl = "https://script.google.com/macros/s/AKfycbwt8ykNWFXMz2RRBaI3KJfglZdxLk7UnICPAOJC6cHP6VWH_Yk9-aDV8Xlb4YfKnu14GA/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbyOvmxW2lzk-rrbDbd2K-e9_2joawZk81PsvEi1vIx7fzGFAx5C4Vj0Nq9XVo1OOagr9w/exec";
     const params = new URLSearchParams(window.location.search);
     const produtoId = params.get("id");
 
@@ -94,6 +94,7 @@
     function renderizar(produto) {
       const imagens = Array.from(new Set([
         produto.imagePerfil,
+        produto.imageUrl,
         produto.imageUrl1,
         produto.imageUrl2,
         produto.imageUrl3,
@@ -104,9 +105,16 @@
       document.getElementById("product-name").textContent = produto.name;
       document.getElementById("product-price").textContent = formatarPreco(produto.price);
       const desc = limparTextoProduto(produto.ProductDescription || produto.description);
-      const detalhes = limparTextoProduto(produto.ProductDetails || produto.details);
-      document.getElementById("product-desc").textContent = desc || "Consulte detalhes no WhatsApp.";
-      document.getElementById("product-details").textContent = detalhes || "Consulte detalhes no WhatsApp.";
+      const detalhes = limparTextoProduto(produto.ProductDetails);
+      document.getElementById("product-desc").textContent = desc || "";
+      const detalhesEl = document.getElementById("product-details");
+      const detalhesRow = detalhesEl ? detalhesEl.parentElement : null;
+      if (detalhes) {
+        detalhesEl.textContent = detalhes;
+        if (detalhesRow) detalhesRow.style.display = "";
+      } else {
+        if (detalhesRow) detalhesRow.style.display = "none";
+      }
 
       const mainImage = document.getElementById("main-image");
       mainImage.src = imagemPrincipal;

@@ -91,7 +91,7 @@
   </footer>
 
   <script>
-    const url = "https://script.google.com/macros/s/AKfycbwt8ykNWFXMz2RRBaI3KJfglZdxLk7UnICPAOJC6cHP6VWH_Yk9-aDV8Xlb4YfKnu14GA/exec";
+    const url = "https://script.google.com/macros/s/AKfycbyOvmxW2lzk-rrbDbd2K-e9_2joawZk81PsvEi1vIx7fzGFAx5C4Vj0Nq9XVo1OOagr9w/exec";
     let todosProdutos = [];
     let produtosPorPagina = 20;
     let paginaAtual = 1;
@@ -151,14 +151,15 @@
       paginaProdutos.forEach(produto => {
         const imagens = Array.from(new Set([
           produto.imagePerfil,
+          produto.imageUrl,
           produto.imageUrl1,
           produto.imageUrl2,
           produto.imageUrl3,
           produto.imageUrl4
         ])).filter(Boolean);
         const desc = limparTextoProduto(produto.ProductDescription || produto.description);
-        const detalhes = limparTextoProduto(produto.ProductDetails || produto.details);
-        const imagemPrincipal = produto.imagePerfil || produto.imageUrl1 || produto.imageUrl2 || produto.imageUrl3 || produto.imageUrl4;
+        const detalhes = limparTextoProduto(produto.ProductDetails);
+        const imagemPrincipal = produto.imagePerfil || produto.imageUrl || produto.imageUrl1 || produto.imageUrl2 || produto.imageUrl3 || produto.imageUrl4;
         const card = document.createElement("div");
         card.className = "produto";
         card.setAttribute("onclick", `abrirModal('${produto.id}')`);
@@ -198,8 +199,8 @@
       </div>
     ` : ""}
 <br>
-    <p><strong>Características: </strong>${desc || "Consulte detalhes no WhatsApp."}</p>
-    <p><strong>Descrição do produto: </strong>${detalhes || "Consulte detalhes no WhatsApp."}</p>
+    <p><strong>Características: </strong>${desc || ""}</p>
+    ${detalhes ? `<p><strong>Descrição do produto: </strong>${detalhes}</p>` : ""}
     <p><strong>Valor: </strong>${formatarPreco(produto.price)}</p>
 
     <div class="share-row">
@@ -276,7 +277,7 @@
         const ogImage = document.querySelector('meta[property="og:image"]');
         if (ogTitle) ogTitle.setAttribute("content", produto.name);
         if (ogDesc) ogDesc.setAttribute("content", produto.ProductDescription || produto.description || "Produto disponível para venda.");
-        if (ogImage) ogImage.setAttribute("content", produto.imagePerfil || produto.imageUrl1 || produto.imageUrl2 || produto.imageUrl3 || produto.imageUrl4);
+        if (ogImage) ogImage.setAttribute("content", produto.imagePerfil || produto.imageUrl || produto.imageUrl1 || produto.imageUrl2 || produto.imageUrl3 || produto.imageUrl4);
         history.replaceState(null, "", linkProduto(id));
       }
     }
