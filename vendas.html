@@ -131,9 +131,8 @@
       const nome = produto.name || "";
       const codigo = produto.id || "";
       return [
-        `Olá, o item, *${nome}* _(Cód. ${codigo}),_ ainda está disponível?`,
-        "",
-        `Link do produto: ${linkProduto(produto.id)}`
+        `Olá, o ítem *${nome}* ainda está disponível?`,
+        `Link: ${linkProduto(produto.id)}`
       ].join("\n");
     }
 
