@@ -62,7 +62,7 @@
     <section class="hero hero-vendas" aria-label="Produtos e ativos">
       <div class="hero-content">
         <h1>Produtos e ativos à venda</h1>
-        <p class="hero-subtitle">Itens novos e usados, ferramentas e materiais que sobraram de serviços. Viu algo interessante? Chame no WhatsApp.</p>
+        <p class="hero-subtitle">Itens novos e usados, ferramentas e materiais que sobraram de serviços. Viu algo interessante? Veja os detalhes do produto.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#produtos">Ver produtos</a>
         </div>
@@ -85,6 +85,7 @@
   
 
   <footer>
+    <br><br>
         <p>Atendimento em Dourados, MS | WhatsApp: <a href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">(67) 98182-7065</a> | Telefone: <a href="tel:+5567981827065">(67) 98182-7065</a></p>
     <br><br>
   </footer>
@@ -114,6 +115,16 @@
       return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
+    function limparTextoProduto(texto) {
+      if (texto === null || texto === undefined) return "";
+      const valor = String(texto).trim();
+      if (!valor) return "";
+      const pareceUrl = /^https?:\/\//i.test(valor);
+      const pareceImagem = /\.(png|jpe?g|webp|gif)(\?.*)?$/i.test(valor);
+      if (pareceUrl && pareceImagem) return "";
+      return valor;
+    }
+
     function produtoTextoCompartilhar(produto) {
       return [
         "Olá, esse item ainda está disponível?",
@@ -138,7 +149,9 @@
       const paginaProdutos = lista.slice(inicio, fim);
 
       paginaProdutos.forEach(produto => {
-        const imagens = [produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3, produto.imageUrl4].filter(Boolean);
+        const imagens = Array.from(new Set([produto.imageUrl, produto.imageUrl2, produto.imageUrl3, produto.imageUrl4])).filter(Boolean);
+        const desc = limparTextoProduto(produto.ProductDescription || produto.description);
+        const detalhes = limparTextoProduto(produto.ProductDetails || produto.details);
         const card = document.createElement("div");
         card.className = "produto";
         card.setAttribute("onclick", `abrirModal('${produto.id}')`);
@@ -178,12 +191,12 @@
       </div>
     ` : ""}
 <br>
-    <p><strong>Características: </strong>${produto.ProductDescription || produto.description || "Consulte detalhes no WhatsApp."}</p>
-    <p><strong>Descrição do produto: </strong>${produto.ProductDetails || produto.details || "Consulte detalhes no WhatsApp."}</p>
+    <p><strong>Características: </strong>${desc || "Consulte detalhes no WhatsApp."}</p>
+    <p><strong>Descrição do produto: </strong>${detalhes || "Consulte detalhes no WhatsApp."}</p>
     <p><strong>Valor: </strong>${formatarPreco(produto.price)}</p>
 
     <div class="share-row">
-      <a class="btn-whatsapp" href="https://wa.me/5567981827065?text=${encodeURIComponent(produtoTextoCompartilhar(produto))}" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+      <a class="btn-whatsapp" href="https://wa.me/5567981827065?text=${encodeURIComponent(produtoTextoCompartilhar(produto))}" target="_blank" rel="noopener noreferrer">Quero este item no WhatsApp.</a>
     </div>
   </div>
 `;

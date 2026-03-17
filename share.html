@@ -43,7 +43,7 @@
         <p><strong>Descrição:</strong> <span id="product-details">--</span></p>
       </div>
       <div class="product-cta">
-        <a class="btn btn-whatsapp" id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+        <a class="btn btn-whatsapp" id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">Quero este item no WhatsApp.</a>
         <a class="btn btn-primary" href="vendas.html">Ver todos os produtos</a>
       </div>
       <a class="product-back" href="vendas.html">Voltar para a lista</a>
@@ -60,6 +60,16 @@
       return parseFloat(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
+    function limparTextoProduto(texto) {
+      if (texto === null || texto === undefined) return "";
+      const valor = String(texto).trim();
+      if (!valor) return "";
+      const pareceUrl = /^https?:\/\//i.test(valor);
+      const pareceImagem = /\.(png|jpe?g|webp|gif)(\?.*)?$/i.test(valor);
+      if (pareceUrl && pareceImagem) return "";
+      return valor;
+    }
+
     function montarMensagem(produto) {
       return [
         "Olá, esse item ainda está disponível?",
@@ -71,23 +81,26 @@
     }
 
     function atualizarMeta(produto, imagem) {
+      const desc = limparTextoProduto(produto.ProductDescription || produto.description) || "Produto disponível para venda.";
       document.title = `${produto.name} | Manutenção do Lar`;
       const ogTitle = document.querySelector('meta[property="og:title"]');
       const ogDesc = document.querySelector('meta[property="og:description"]');
       const ogImage = document.querySelector('meta[property="og:image"]');
       if (ogTitle) ogTitle.setAttribute("content", produto.name);
-      if (ogDesc) ogDesc.setAttribute("content", produto.ProductDescription || produto.description || "Produto disponível para venda.");
+      if (ogDesc) ogDesc.setAttribute("content", desc);
       if (ogImage) ogImage.setAttribute("content", imagem);
     }
 
     function renderizar(produto) {
-      const imagens = [produto.imageUrl, produto.imageUrl1, produto.imageUrl2, produto.imageUrl3].filter(Boolean);
+      const imagens = Array.from(new Set([produto.imageUrl, produto.imageUrl2, produto.imageUrl3, produto.imageUrl4])).filter(Boolean);
       const imagemPrincipal = imagens[0] || "https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg";
 
       document.getElementById("product-name").textContent = produto.name;
       document.getElementById("product-price").textContent = formatarPreco(produto.price);
-      document.getElementById("product-desc").textContent = produto.ProductDescription || produto.description || "Consulte detalhes no WhatsApp.";
-      document.getElementById("product-details").textContent = produto.ProductDetails || produto.details || "Consulte detalhes no WhatsApp.";
+      const desc = limparTextoProduto(produto.ProductDescription || produto.description);
+      const detalhes = limparTextoProduto(produto.ProductDetails || produto.details);
+      document.getElementById("product-desc").textContent = desc || "Consulte detalhes no WhatsApp.";
+      document.getElementById("product-details").textContent = detalhes || "Consulte detalhes no WhatsApp.";
 
       const mainImage = document.getElementById("main-image");
       mainImage.src = imagemPrincipal;
