@@ -102,7 +102,9 @@
       </p>
     </div>
   </section>
- 
+
+  <main class="page-grid">
+    <div class="page-main">
   <section class="about">
     <h2>Sobre nós</h2>
     <p>Prestamos serviços residenciais com anos de experiência atendendo em Dourados e região. Compromisso, agilidade e confiança são os pilares do nosso trabalho.</p>
@@ -134,14 +136,31 @@
 
   <section class="services">
     <h2>Serviços oferecidos</h2>
-    <ul>
-      <li>⚡ Elétrica</li>
-      <li>🚿 Hidráulica</li>
-      <li>🧼 Limpeza de caixa d'água</li>
-      <li>🌿 Jardinagem</li>
-      <li>🪑 Montagem de móveis</li>
-      <li>🏡 Reparos residenciais</li>
-    </ul>
+    <div class="services-grid">
+      <ul class="services-list">
+        <li>⚡ Elétrica</li>
+        <li>🚿 Hidráulica</li>
+        <li>🧼 Limpeza de caixa d'água</li>
+        <li>🌿 Jardinagem</li>
+        <li>🪑 Montagem de móveis</li>
+        <li>🏡 Reparos residenciais</li>
+      </ul>
+      <div class="services-aside" aria-label="Destaques">
+        <div class="services-spotlight">
+          <h3>Destaque do dia</h3>
+          <p>Pequenos consertos com acabamento caprichado e limpeza final.</p>
+          <div class="services-actions">
+            <a class="btn btn-primary" href="#formulario">Pedir orçamento</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">WhatsApp direto</a>
+          </div>
+        </div>
+        <div class="services-rotate" aria-live="polite">
+          <p>“Atendimento rápido e sem surpresa no valor.”</p>
+          <p>“Organização e cuidado com sua casa.”</p>
+          <p>“Do orçamento à entrega: tudo transparente.”</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="how-it-works" aria-label="Como funciona">
@@ -329,6 +348,50 @@
     <br>
     
   </section>
+    </div>
+    <aside class="page-sidebar" aria-label="Atualizações e novidades">
+      <div class="sidebar-section" aria-labelledby="sidebar-servicos">
+        <h2 id="sidebar-servicos">Últimos serviços realizados</h2>
+        <div class="sidebar-feed">
+          <article class="sidebar-card">
+            <img src="img/telhado.jpg" alt="Conserto de telhado finalizado" loading="lazy" width="84" height="84">
+            <div>
+              <h3>Reparo em telhado</h3>
+              <p>Troca de telhas quebradas e vedação completa para eliminar goteiras.</p>
+            </div>
+          </article>
+          <article class="sidebar-card">
+            <img src="img/porta-pronta.jpg" alt="Instalação de porta concluída" loading="lazy" width="84" height="84">
+            <div>
+              <h3>Instalação de porta</h3>
+              <p>Alinhamento, ajustes e acabamento para um fechamento perfeito.</p>
+            </div>
+          </article>
+          <article class="sidebar-card">
+            <img src="img/pint-depois.jpg" alt="Pintura interna pronta" loading="lazy" width="84" height="84">
+            <div>
+              <h3>Pintura interna</h3>
+              <p>Ambiente renovado com proteção do piso e limpeza final.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="sidebar-section" aria-labelledby="sidebar-produtos">
+        <h2 id="sidebar-produtos">Novos produtos na loja</h2>
+        <div id="sidebar-produtos-list" class="sidebar-products">
+          <p class="sidebar-muted">Carregando produtos...</p>
+        </div>
+        <a class="sidebar-link" href="vendas.html">Ver todos os produtos</a>
+      </div>
+
+      <div class="sidebar-section" aria-labelledby="sidebar-dica">
+        <h2 id="sidebar-dica">Dica rápida</h2>
+        <p class="sidebar-muted">Uma checagem simples de torneiras e disjuntores evita surpresas. Se notar algo fora do padrão, chame que avaliamos.</p>
+        <a class="sidebar-link" href="#formulario">Agendar uma visita</a>
+      </div>
+    </aside>
+  </main>
   <footer>
     <a class="btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp</a>
     <br><br>
@@ -340,6 +403,7 @@
 
   <script src="js/menu.js" defer></script>
   <script src="js/script.js" defer></script>
+  <script src="js/home-feed.js" defer></script>
  
 </body>
 </html>
