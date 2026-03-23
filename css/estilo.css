@@ -409,6 +409,11 @@ section.visible {
   font-size: 0.9rem;
   color: var(--muted-text);
 }
+.sidebar-card a {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 700;
+}
 
 .sidebar-product {
   display: grid;
