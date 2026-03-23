@@ -76,7 +76,7 @@
       </div>
     </section>
 
-    <section class="servicos-wrap" id="lista-servicos" aria-live="polite">
+    <section class="servicos-wrap visible" id="lista-servicos" aria-live="polite">
       <div class="servicos-filtros">
         <input type="text" id="busca-servicos" placeholder="Buscar serviço..." aria-label="Buscar serviço">
         <select id="categoria-servicos" aria-label="Filtrar por categoria">
@@ -99,7 +99,7 @@
         <p><strong id="servicos-salvos">0</strong> salvos</p>
       </div>
 
-      <section id="servicos" class="servicos-grid"></section>
+      <section id="servicos" class="servicos-grid visible"></section>
       <div id="servicos-modais"></div>
       <div class="servicos-empty" id="servicos-empty" aria-hidden="true">
         Nenhum serviço encontrado com esses filtros.
@@ -119,6 +119,7 @@
     const whatsappNumber = "5567981827065";
     const favoritosKey = "mdlar_servicos_favoritos";
     let todosServicos = [];
+    let servicoInicial = null;
 
     function obterTexto(item, campos) {
       for (const campo of campos) {
@@ -283,6 +284,7 @@
       if (!idSeguro) idSeguro = `servico-${idx + 1}`;
       return {
         id: idSeguro,
+        idBruto,
         titulo,
         descricao,
         categoria,
@@ -358,7 +360,7 @@
               ${servico.dataFormatada ? `<span>Realizado em ${servico.dataFormatada}</span>` : "<span>Serviço recente</span>"}
             </div>
             <div class="servico-actions">
-              <button class="btn btn-outline" data-modal="modal-${servico.id}">Ver detalhes</button>
+              <a class="btn btn-outline" href="servicos.html?servico=${encodeURIComponent(servico.id)}">Ver detalhes</a>
               <a class="btn btn-primary" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(montarMensagem(servico))}" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
               <button class="btn btn-save ${ehFavorito(servico.id, favoritos) ? "ativo" : ""}" data-favorito="${servico.id}">
                 ${ehFavorito(servico.id, favoritos) ? "Salvo" : "Salvar"}
@@ -539,6 +541,13 @@
         todosServicos = lista;
         preencherCategorias(todosServicos);
         aplicarFiltros();
+        if (servicoInicial) {
+          const alvo = todosServicos.find(s => s.id === servicoInicial);
+          if (alvo) {
+            const modal = document.getElementById(`modal-${alvo.id}`);
+            if (modal) modal.style.display = "block";
+          }
+        }
       })
       .catch(() => {
         document.getElementById("servicos-empty").textContent = "Não foi possível carregar os serviços agora.";
@@ -549,6 +558,10 @@
     document.getElementById("categoria-servicos").addEventListener("change", aplicarFiltros);
     document.getElementById("ordem-servicos").addEventListener("change", aplicarFiltros);
     document.getElementById("filtro-favoritos").addEventListener("change", aplicarFiltros);
+
+    const params = new URLSearchParams(window.location.search);
+    const servicoParam = params.get("servico");
+    servicoInicial = servicoParam ? String(servicoParam).toLowerCase().replace(/[^a-z0-9_-]/g, "") : null;
   </script>
   <script src="js/menu.js"></script>
 </body>
