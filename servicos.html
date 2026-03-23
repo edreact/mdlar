@@ -1,0 +1,558 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFVQDPHD');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17059370546"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17059370546');
+    gtag('config', 'AW-983191132');
+  </script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="MobileOptimized" content="width">
+  <meta name="description" content="Portfólio de serviços realizados em Dourados e região. Veja fotos e vídeos dos últimos serviços e solicite um igual.">
+  <meta name="theme-color" content="#ffde59">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Serviços realizados | Manutenção do Lar">
+  <meta property="og:description" content="Confira os últimos serviços realizados, com fotos e vídeos. Gostou de algum? Clique e solicite pelo WhatsApp.">
+  <meta property="og:image" content="https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700">
+  <link rel="stylesheet" type="text/css" href="css/estilo.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7620069477591767"
+   crossorigin="anonymous"></script>
+  <title>Serviços realizados | Manutenção do Lar</title>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFVQDPHD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <header id="header">
+    <a href="/"><img id="img-logo" src="img/logo.jpg" href="/" alt="logo"></a>
+    <a id="logo" href="/">Manutenção do Lar</a>
+    <nav id="nav">
+      <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
+          <span id="hamburger"></span>
+      </button>
+      <ul id="menu">
+         <li><a href="/">Home</a></li>
+         <li><a href="/#formulario">Solicite um orçamento</a></li>
+         <li><a href="servicos.html">Serviços realizados</a></li>
+         <li><a href="vendas.html">Venda de ativos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero hero-servicos" aria-label="Serviços realizados">
+      <div class="hero-content">
+        <h1>Últimos serviços realizados</h1>
+        <p class="hero-subtitle">Veja o que já entregamos: fotos, vídeos e detalhes dos serviços mais recentes. Encontrou algo parecido? Clique para solicitar o mesmo tipo de serviço.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#lista-servicos">Ver serviços</a>
+          <a class="btn btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+        </div>
+        <ul class="hero-badges" aria-label="Destaques rápidos">
+          <li>Fotos e vídeos reais dos serviços</li>
+          <li>Atendimento em Dourados e região</li>
+          <li>Solicitação rápida pelo WhatsApp</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="servicos-wrap" id="lista-servicos" aria-live="polite">
+      <div class="servicos-filtros">
+        <input type="text" id="busca-servicos" placeholder="Buscar serviço..." aria-label="Buscar serviço">
+        <select id="categoria-servicos" aria-label="Filtrar por categoria">
+          <option value="">Todas as categorias</option>
+        </select>
+        <select id="ordem-servicos" aria-label="Ordenar serviços">
+          <option value="recentes">Mais recentes</option>
+          <option value="antigos">Mais antigos</option>
+          <option value="az">Título A-Z</option>
+          <option value="za">Título Z-A</option>
+        </select>
+        <label class="toggle-favoritos">
+          <input type="checkbox" id="filtro-favoritos">
+          Mostrar apenas salvos
+        </label>
+      </div>
+
+      <div class="servicos-stats">
+        <p><strong id="servicos-total">0</strong> serviços encontrados</p>
+        <p><strong id="servicos-salvos">0</strong> salvos</p>
+      </div>
+
+      <section id="servicos" class="servicos-grid"></section>
+      <div id="servicos-modais"></div>
+      <div class="servicos-empty" id="servicos-empty" aria-hidden="true">
+        Nenhum serviço encontrado com esses filtros.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <br><br>
+        <p>Atendimento em Dourados, MS | WhatsApp: <a href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">(67) 98182-7065</a> | Telefone: <a href="tel:+5567981827065">(67) 98182-7065</a></p>
+    <br><br>
+  </footer>
+
+  <script>
+    const apiUrl = "https://script.google.com/macros/s/AKfycbyZPlg9T__KynVDvI0ARTVfL4PBQzzGs6KUR8ey_XtUQBhaW42Y-NHyHW_jmsGUsWZ9/exec";
+    const fallbackImage = "https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg";
+    const whatsappNumber = "5567981827065";
+    const favoritosKey = "mdlar_servicos_favoritos";
+    let todosServicos = [];
+
+    function obterTexto(item, campos) {
+      for (const campo of campos) {
+        if (item && item[campo]) {
+          const valor = String(item[campo]).trim();
+          if (valor) return valor;
+        }
+      }
+      return "";
+    }
+
+    function limparTexto(texto) {
+      if (texto === null || texto === undefined) return "";
+      return String(texto).trim();
+    }
+
+    function parseDate(valor) {
+      if (!valor) return null;
+      if (valor instanceof Date) return isNaN(valor.getTime()) ? null : valor;
+      const str = String(valor).trim();
+      if (!str) return null;
+      const tentativa = new Date(str);
+      if (!isNaN(tentativa.getTime())) return tentativa;
+      const match = str.match(/(\\d{1,2})[\\/.-](\\d{1,2})[\\/.-](\\d{2,4})/);
+      if (match) {
+        const dia = Number(match[1]);
+        const mes = Number(match[2]) - 1;
+        let ano = Number(match[3]);
+        if (ano < 100) ano += 2000;
+        const dt = new Date(ano, mes, dia);
+        return isNaN(dt.getTime()) ? null : dt;
+      }
+      return null;
+    }
+
+    function formatarData(valor) {
+      const data = parseDate(valor);
+      if (!data) return "";
+      return new Intl.DateTimeFormat("pt-BR").format(data);
+    }
+
+    function coletarImagens(item) {
+      const candidatos = [
+        item.FOTO_PERFIL,
+        item.FOTO_1,
+        item.FOTO_2,
+        item.FOTO_3,
+        item.FOTO_4,
+        item.imagePerfil,
+        item.imageUrl,
+        item.imageUrl1,
+        item.imageUrl2,
+        item.imageUrl3,
+        item.imageUrl4,
+        item.image1,
+        item.image2,
+        item.image3,
+        item.image4,
+        item.imagem1,
+        item.imagem2,
+        item.imagem3,
+        item.imagem4,
+        item.foto1,
+        item.foto2,
+        item.foto3,
+        item.foto4
+      ];
+      const unicos = Array.from(new Set(candidatos.filter(Boolean)));
+      return unicos.slice(0, 4);
+    }
+
+    function coletarVideo(item) {
+      return obterTexto(item, ["VIDEO", "videoUrl", "video", "videoLink", "video1", "urlVideo", "linkVideo"]);
+    }
+
+    function montarMensagem(servico) {
+      const titulo = servico.titulo || "serviço";
+      const data = servico.dataFormatada ? ` realizado em ${servico.dataFormatada}` : "";
+      return [
+        `Olá! Vi o serviço *${titulo}*${data} e gostaria de solicitar algo parecido.`,
+        "",
+        `Link: ${window.location.href}`
+      ].join("\\n");
+    }
+
+    function lerFavoritos() {
+      try {
+        const raw = localStorage.getItem(favoritosKey);
+        const lista = raw ? JSON.parse(raw) : [];
+        return new Set(lista);
+      } catch {
+        return new Set();
+      }
+    }
+
+    function salvarFavoritos(set) {
+      try {
+        localStorage.setItem(favoritosKey, JSON.stringify(Array.from(set)));
+      } catch {}
+    }
+
+    function ehFavorito(id, favoritos) {
+      return favoritos.has(String(id));
+    }
+
+    function alternarFavorito(id) {
+      const favoritos = lerFavoritos();
+      const chave = String(id);
+      if (favoritos.has(chave)) {
+        favoritos.delete(chave);
+      } else {
+        favoritos.add(chave);
+      }
+      salvarFavoritos(favoritos);
+      atualizarContadores();
+      return favoritos;
+    }
+
+    function normalizarVideoUrl(url) {
+      if (!url) return "";
+      const raw = String(url).trim();
+      if (!raw) return "";
+      if (/^https?:\/\//i.test(raw)) return raw;
+      if (/^(www\.)?youtu\.be\//i.test(raw)) return `https://${raw.replace(/^www\./i, "")}`;
+      if (/^youtube\.com\//i.test(raw)) return `https://${raw}`;
+      if (/^vimeo\.com\//i.test(raw)) return `https://${raw}`;
+      return "";
+    }
+
+    function montarVideoEmbed(url) {
+      const normalizada = normalizarVideoUrl(url);
+      if (!normalizada) return null;
+      try {
+        const parsed = new URL(normalizada);
+        const host = parsed.hostname.replace(/^www\./i, "");
+        if (host === "youtu.be") {
+          const id = parsed.pathname.replace("/", "");
+          if (id) return { type: "embed", url: `https://www.youtube.com/embed/${id}` };
+        }
+        if (host === "youtube.com") {
+          const id = parsed.searchParams.get("v") || parsed.pathname.replace("/embed/", "");
+          if (id) return { type: "embed", url: `https://www.youtube.com/embed/${id}` };
+        }
+        if (host === "vimeo.com") {
+          const id = parsed.pathname.replace("/", "");
+          if (id) return { type: "embed", url: `https://player.vimeo.com/video/${id}` };
+        }
+      } catch {}
+      return { type: "video", url: normalizada };
+    }
+
+    function montarServico(item, idx) {
+      const titulo = obterTexto(item, ["TITULO", "titulo", "title", "nome", "name"]) || "Serviço realizado";
+      const descricao = limparTexto(obterTexto(item, ["DESCRICAO", "descricao", "description", "desc", "detalhes", "details"]));
+      const categoria = obterTexto(item, ["CATEGORIA", "categoria", "category", "tipo", "serviceType"]);
+      const data = obterTexto(item, ["DATA", "data", "date", "createdAt", "updatedAt", "timestamp"]);
+      const imagens = coletarImagens(item);
+      const videoRaw = coletarVideo(item);
+      const video = videoRaw ? montarVideoEmbed(videoRaw) : null;
+      const idBruto = obterTexto(item, ["ID", "id", "codigo", "code"]) || `servico-${idx + 1}`;
+      let idSeguro = String(idBruto).toLowerCase().replace(/[^a-z0-9_-]/g, "");
+      if (!idSeguro) idSeguro = `servico-${idx + 1}`;
+      return {
+        id: idSeguro,
+        titulo,
+        descricao,
+        categoria,
+        data,
+        dataFormatada: formatarData(data),
+        imagens,
+        video,
+        temVideo: Boolean(video),
+        item
+      };
+    }
+
+    function ordenarServicos(lista, ordem) {
+      const copia = [...lista];
+      if (ordem === "az") {
+        copia.sort((a, b) => a.titulo.localeCompare(b.titulo));
+      } else if (ordem === "za") {
+        copia.sort((a, b) => b.titulo.localeCompare(a.titulo));
+      } else if (ordem === "antigos") {
+        copia.sort((a, b) => {
+          const da = parseDate(a.data) || new Date(0);
+          const db = parseDate(b.data) || new Date(0);
+          return da - db;
+        });
+      } else {
+        copia.sort((a, b) => {
+          const da = parseDate(a.data) || new Date(0);
+          const db = parseDate(b.data) || new Date(0);
+          return db - da;
+        });
+      }
+      return copia;
+    }
+
+    function atualizarContadores() {
+      const favoritos = lerFavoritos();
+      document.getElementById("servicos-salvos").textContent = favoritos.size;
+    }
+
+    function renderizarServicos(lista) {
+      const container = document.getElementById("servicos");
+      const modais = document.getElementById("servicos-modais");
+      const empty = document.getElementById("servicos-empty");
+      container.innerHTML = "";
+      modais.innerHTML = "";
+      const favoritos = lerFavoritos();
+
+      document.getElementById("servicos-total").textContent = lista.length;
+      atualizarContadores();
+      if (!lista.length) {
+        empty.setAttribute("aria-hidden", "false");
+        return;
+      }
+      empty.setAttribute("aria-hidden", "true");
+
+      lista.forEach(servico => {
+        const imagemPrincipal = servico.imagens[0] || fallbackImage;
+        const card = document.createElement("article");
+        card.className = "servico-card";
+        card.innerHTML = `
+          <div class="servico-media">
+            <img src="${imagemPrincipal}" alt="${servico.titulo}">
+            <div class="servico-badges">
+              ${servico.imagens.length ? `<span class="badge">${servico.imagens.length} foto(s)</span>` : ""}
+              ${servico.temVideo ? `<span class="badge badge-video">Vídeo</span>` : ""}
+            </div>
+          </div>
+          <div class="servico-body">
+            ${servico.categoria ? `<p class="servico-categoria">${servico.categoria}</p>` : ""}
+            <h3>${servico.titulo}</h3>
+            <p class="servico-desc">${servico.descricao || "Serviço realizado com qualidade e cuidado."}</p>
+            <div class="servico-meta">
+              ${servico.dataFormatada ? `<span>Realizado em ${servico.dataFormatada}</span>` : "<span>Serviço recente</span>"}
+            </div>
+            <div class="servico-actions">
+              <button class="btn btn-outline" data-modal="modal-${servico.id}">Ver detalhes</button>
+              <a class="btn btn-primary" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(montarMensagem(servico))}" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
+              <button class="btn btn-save ${ehFavorito(servico.id, favoritos) ? "ativo" : ""}" data-favorito="${servico.id}">
+                ${ehFavorito(servico.id, favoritos) ? "Salvo" : "Salvar"}
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+
+        const modal = document.createElement("div");
+        modal.id = `modal-${servico.id}`;
+        modal.className = "modal";
+        const mediaItens = [];
+        servico.imagens.forEach(img => mediaItens.push({ type: "image", url: img }));
+        if (servico.video) mediaItens.push({ type: servico.video.type, url: servico.video.url });
+
+        const slides = mediaItens.map((media, idx) => {
+          if (media.type === "image") {
+            return `<img src="${media.url}" class="media-slide ${idx === 0 ? "active" : ""}" alt="${servico.titulo}">`;
+          }
+          if (media.type === "embed") {
+            return `<iframe src="${media.url}" class="media-slide ${idx === 0 ? "active" : ""}" title="${servico.titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+          }
+          return `<video src="${media.url}" class="media-slide ${idx === 0 ? "active" : ""}" controls></video>`;
+        }).join("");
+
+        const thumbs = mediaItens.map((media, idx) => {
+          if (media.type === "image") {
+            return `
+              <button type="button" class="thumb ${idx === 0 ? "active" : ""}" data-slide="${idx}">
+                <img src="${media.url}" alt="${servico.titulo} - mídia ${idx + 1}">
+              </button>
+            `;
+          }
+          return `
+            <button type="button" class="thumb thumb-video ${idx === 0 ? "active" : ""}" data-slide="${idx}">
+              <span>Vídeo</span>
+            </button>
+          `;
+        }).join("");
+
+        modal.innerHTML = `
+          <div class="modal-content service-modal">
+            <span class="close" data-close="${modal.id}">&times;</span>
+            <h3>${servico.titulo}</h3>
+            ${servico.dataFormatada ? `<p class="servico-meta-modal">Realizado em ${servico.dataFormatada}</p>` : ""}
+            <div class="modal-slider servico-slider">
+              ${slides}
+              ${mediaItens.length > 1 ? `
+                <button class="prev" data-prev="${modal.id}">&#10094;</button>
+                <button class="next" data-next="${modal.id}">&#10095;</button>
+              ` : ""}
+            </div>
+            ${mediaItens.length > 1 ? `<div class="modal-thumbs">${thumbs}</div>` : ""}
+            <p>${servico.descricao || "Serviço realizado com qualidade e cuidado."}</p>
+            <div class="share-row">
+              <a class="btn-whatsapp" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(montarMensagem(servico))}" target="_blank" rel="noopener noreferrer">Quero este serviço no WhatsApp</a>
+              <button class="btn btn-save ${ehFavorito(servico.id, favoritos) ? "ativo" : ""}" data-favorito="${servico.id}">
+                ${ehFavorito(servico.id, favoritos) ? "Salvo" : "Salvar"}
+              </button>
+            </div>
+          </div>
+        `;
+        modais.appendChild(modal);
+      });
+
+    }
+
+    function aplicarFiltros() {
+      const busca = document.getElementById("busca-servicos").value.toLowerCase();
+      const categoria = document.getElementById("categoria-servicos").value.toLowerCase();
+      const ordem = document.getElementById("ordem-servicos").value;
+      const somenteFavoritos = document.getElementById("filtro-favoritos").checked;
+      const favoritos = lerFavoritos();
+
+      let lista = [...todosServicos];
+      if (busca) {
+        lista = lista.filter(s => s.titulo.toLowerCase().includes(busca) || (s.descricao || "").toLowerCase().includes(busca));
+      }
+      if (categoria) {
+        lista = lista.filter(s => (s.categoria || "").toLowerCase() === categoria);
+      }
+      if (somenteFavoritos) {
+        lista = lista.filter(s => favoritos.has(String(s.id)));
+      }
+      lista = ordenarServicos(lista, ordem);
+      renderizarServicos(lista);
+    }
+
+    function preencherCategorias(servicos) {
+      const select = document.getElementById("categoria-servicos");
+      const categorias = Array.from(new Set(servicos.map(s => s.categoria).filter(Boolean)));
+      categorias.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        select.appendChild(opt);
+      });
+    }
+
+    function pausarVideos(modal) {
+      modal.querySelectorAll("video").forEach(v => v.pause());
+    }
+
+    function ativarSlide(modal, idx) {
+      const slides = modal.querySelectorAll(".media-slide");
+      const thumbs = modal.querySelectorAll(".thumb");
+      if (!slides.length) return;
+      slides.forEach(s => s.classList.remove("active"));
+      thumbs.forEach(t => t.classList.remove("active"));
+      if (slides[idx]) slides[idx].classList.add("active");
+      if (thumbs[idx]) thumbs[idx].classList.add("active");
+      pausarVideos(modal);
+    }
+
+    function moverSlide(modal, direcao) {
+      const slides = modal.querySelectorAll(".media-slide");
+      if (!slides.length) return;
+      let atual = Array.from(slides).findIndex(s => s.classList.contains("active"));
+      atual = (atual + direcao + slides.length) % slides.length;
+      ativarSlide(modal, atual);
+    }
+
+    document.addEventListener("click", (event) => {
+      const alvo = event.target;
+      if (alvo.matches("[data-modal]")) {
+        const id = alvo.getAttribute("data-modal");
+        const modal = document.getElementById(id);
+        if (modal) modal.style.display = "block";
+      }
+      if (alvo.matches("[data-close]")) {
+        const id = alvo.getAttribute("data-close");
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.style.display = "none";
+          pausarVideos(modal);
+        }
+      }
+      if (alvo.classList.contains("modal")) {
+        alvo.style.display = "none";
+        pausarVideos(alvo);
+      }
+      if (alvo.matches("[data-prev]")) {
+        const id = alvo.getAttribute("data-prev");
+        const modal = document.getElementById(id);
+        if (modal) moverSlide(modal, -1);
+      }
+      if (alvo.matches("[data-next]")) {
+        const id = alvo.getAttribute("data-next");
+        const modal = document.getElementById(id);
+        if (modal) moverSlide(modal, 1);
+      }
+      if (alvo.closest(".thumb")) {
+        const btn = alvo.closest(".thumb");
+        const idx = Number(btn.getAttribute("data-slide"));
+        const modal = btn.closest(".modal");
+        if (modal) ativarSlide(modal, idx);
+      }
+      if (alvo.matches("[data-favorito]")) {
+        const id = alvo.getAttribute("data-favorito");
+        const favoritos = alternarFavorito(id);
+        document.querySelectorAll(`[data-favorito="${id}"]`).forEach(btn => {
+          if (favoritos.has(String(id))) {
+            btn.classList.add("ativo");
+            btn.textContent = "Salvo";
+          } else {
+            btn.classList.remove("ativo");
+            btn.textContent = "Salvar";
+          }
+        });
+      }
+    });
+
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        const lista = (data.saida || data.servicos || data.items || []).map((item, idx) => montarServico(item, idx));
+        todosServicos = lista;
+        preencherCategorias(todosServicos);
+        aplicarFiltros();
+      })
+      .catch(() => {
+        document.getElementById("servicos-empty").textContent = "Não foi possível carregar os serviços agora.";
+        document.getElementById("servicos-empty").setAttribute("aria-hidden", "false");
+      });
+
+    document.getElementById("busca-servicos").addEventListener("input", aplicarFiltros);
+    document.getElementById("categoria-servicos").addEventListener("change", aplicarFiltros);
+    document.getElementById("ordem-servicos").addEventListener("change", aplicarFiltros);
+    document.getElementById("filtro-favoritos").addEventListener("change", aplicarFiltros);
+  </script>
+  <script src="js/menu.js"></script>
+</body>
+</html>
+
+
+

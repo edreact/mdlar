@@ -1112,3 +1112,225 @@ button {
   font-weight: bold;
   background: #ffc107;
 }
+
+/* ======================== */
+/* SERVIÇOS REALIZADOS      */
+/* ======================== */
+
+.servicos-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px 50px;
+}
+
+.servicos-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 10px;
+}
+
+.servicos-filtros input,
+.servicos-filtros select {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  min-width: 180px;
+}
+
+.toggle-favoritos {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--muted-text);
+}
+
+.servicos-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: var(--muted-text);
+}
+
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.servico-card {
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.servico-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+
+.servico-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.servico-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.badge-video {
+  background: #1f3c58;
+}
+
+.servico-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.servico-body h3 {
+  font-size: 1.15rem;
+}
+
+.servico-categoria {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted-text);
+}
+
+.servico-desc {
+  color: var(--muted-text);
+}
+
+.servico-meta {
+  font-size: 0.85rem;
+  color: var(--muted-text);
+}
+
+.servico-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+.btn-outline:hover {
+  background: #000;
+  color: var(--primary-color);
+}
+
+.btn-save {
+  background: #f7f7f7;
+  color: #000;
+  border: 1px dashed rgba(0, 0, 0, 0.5);
+}
+.btn-save:hover {
+  background: #000;
+  color: var(--primary-color);
+}
+
+.btn-save.ativo {
+  background: #000;
+  color: var(--primary-color);
+  border-color: #000;
+}
+
+.servicos-empty {
+  text-align: center;
+  color: var(--muted-text);
+  margin-top: 20px;
+}
+.servicos-empty[aria-hidden="true"] {
+  display: none;
+}
+
+.service-modal {
+  max-width: 860px;
+}
+
+.servico-slider .media-slide {
+  display: none;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.servico-slider .media-slide.active {
+  display: block;
+}
+
+.servico-slider iframe.media-slide {
+  height: 420px;
+  border: none;
+}
+
+.servico-slider video.media-slide {
+  background: #000;
+}
+
+.servico-meta-modal {
+  color: var(--muted-text);
+}
+
+.thumb-video {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .servicos-filtros input,
+  .servicos-filtros select {
+    width: 100%;
+  }
+
+  .servico-actions .btn,
+  .servico-actions .btn-save {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
