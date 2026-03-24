@@ -1,4 +1,4 @@
-?(() => {
+﻿(() => {
   const produtosContainer = document.getElementById("sidebar-produtos-list");
   const servicosContainer = document.getElementById("sidebar-servicos-list");
   if (!produtosContainer && !servicosContainer) return;
@@ -38,7 +38,7 @@
 
   function cardServico(servico) {
     const imagem = escolherImagemServico(servico);
-    const titulo = servico.TITULO || "Servi�o realizado";
+    const titulo = servico.TITULO || "Serviço realizado";
     const descricao = servico.DESCRICAO || "";
     const id = servico.ID ? String(servico.ID).toLowerCase().replace(/[^a-z0-9_-]/g, "") : "";
     const link = id ? `servicos.html?servico=${encodeURIComponent(id)}` : "servicos.html";
@@ -59,18 +59,15 @@
       .then(res => res.json())
       .then(data => {
         const lista = Array.isArray(data.saida) ? data.saida : [];
-        const recentes = lista
-          .filter(item => item && item.id && item.name)
-          .reverse()
-          .slice(0, 4);
+        const recentes = lista.filter(item => item && item.id && item.name).slice(0, 4);
         if (!recentes.length) {
-          produtosContainer.innerHTML = "<p class=\"sidebar-muted\">Nenhum produto dispon�vel no momento.</p>";
+          produtosContainer.innerHTML = "<p class=\"sidebar-muted\">Nenhum produto disponível no momento.</p>";
           return;
         }
         produtosContainer.innerHTML = recentes.map(cardProduto).join("");
       })
       .catch(() => {
-        produtosContainer.innerHTML = "<p class=\"sidebar-muted\">N�o foi poss�vel carregar os produtos agora.</p>";
+        produtosContainer.innerHTML = "<p class=\"sidebar-muted\">Não foi possível carregar os produtos agora.</p>";
       });
   }
 
@@ -84,13 +81,13 @@
           .reverse()
           .slice(0, 3);
         if (!recentes.length) {
-          servicosContainer.innerHTML = "<p class=\"sidebar-muted\">Nenhum servi�o dispon�vel no momento.</p>";
+          servicosContainer.innerHTML = "<p class=\"sidebar-muted\">Nenhum serviço disponível no momento.</p>";
           return;
         }
         servicosContainer.innerHTML = recentes.map(cardServico).join("");
       })
       .catch(() => {
-        servicosContainer.innerHTML = "<p class=\"sidebar-muted\">N�o foi poss�vel carregar os servi�os agora.</p>";
+        servicosContainer.innerHTML = "<p class=\"sidebar-muted\">Não foi possível carregar os serviços agora.</p>";
       });
   }
 })();

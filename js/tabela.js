@@ -1,4 +1,4 @@
-// Fun��o para buscar dados da API e preencher a tabela
+// Função para buscar dados da API e preencher a tabela
 async function fetchData() {
   try {
     const response = await fetch('https://script.google.com/macros/s/AKfycbyXC6bT9qgdhnP4wvTOkZvH50zFTdpEntmmnm070YTlmOoYKXPD4XGM4z9tVmcIlNjW/exec');
@@ -20,22 +20,22 @@ async function fetchData() {
         const row = document.createElement("tr");
 
         const serviceName = document.createElement("td");
-        serviceName.textContent = service.servico || 'N�o dispon�vel';
+        serviceName.textContent = service.servico || 'Não disponível';
         row.appendChild(serviceName);
 
         const serviceDesc = document.createElement("td");
-        serviceDesc.textContent = service.descricao || 'N�o dispon�vel';
+        serviceDesc.textContent = service.descricao || 'Não disponível';
         row.appendChild(serviceDesc);
 
         const servicePrice = document.createElement("td");
-        servicePrice.textContent = service.preco || 'N�o dispon�vel';
+        servicePrice.textContent = service.preco || 'Não disponível';
         row.appendChild(servicePrice);
 
         serviceTableBody.appendChild(row);
       });
     } else {
-      // Se n�o houver dados v�lidos
-      serviceTableBody.innerHTML = "<tr><td colspan='3'>Nenhum dado dispon�vel.</td></tr>";
+      // Se não houver dados válidos
+      serviceTableBody.innerHTML = "<tr><td colspan='3'>Nenhum dado disponível.</td></tr>";
     }
   } catch (error) {
     console.error("Erro ao buscar os dados:", error);
@@ -43,7 +43,7 @@ async function fetchData() {
   }
 }
 
-// Fun��o para a busca
+// Função para a busca
 function searchTable() {
   const input = document.getElementById("searchInput");
   const filter = input.value.toLowerCase();
@@ -69,5 +69,5 @@ function searchTable() {
   }
 }
 
-// Chamar a fun��o de buscar dados assim que a p�gina carregar
+// Chamar a função de buscar dados assim que a página carregar
 window.onload = fetchData;

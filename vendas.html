@@ -1,4 +1,4 @@
-?<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -38,7 +38,7 @@
      crossorigin="anonymous"></script>
     <title>Produtos e Ativos | Manutenção do Lar</title>
 </head>
-<body id="topo">
+<body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFVQDPHD"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -245,7 +245,7 @@
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        todosProdutos = Array.isArray(data.saida) ? data.saida.slice().reverse() : [];
+        todosProdutos = data.saida;
         if (produtoInicial) {
           const idx = todosProdutos.findIndex(p => p.id === produtoInicial);
           if (idx >= 0) {
@@ -329,9 +329,6 @@
     const params = new URLSearchParams(window.location.search);
     produtoInicial = params.get("produto");
   </script>
-  <a class="btn-scroll-top" href="#topo" aria-label="Voltar ao topo">Voltar ao topo</a>
   <script src="js/menu.js"></script>
-  <script src="js/script.js" defer></script>
 </body>
 </html>
-
