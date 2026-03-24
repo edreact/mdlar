@@ -34,7 +34,7 @@ body {
 }
 
 /* ======================== */
-/* CABEÇALHO E MENU         */
+/* CABE�ALHO E MENU         */
 /* ======================== */
 
 header {
@@ -277,7 +277,7 @@ ul {
 }
 
 /* ======================== */
-/* BOTÕES FLUTUANTES       */
+/* BOT�ES FLUTUANTES       */
 /* ======================== */
 
 .btn-whatsapp {
@@ -319,7 +319,7 @@ ul {
 }
 
 /* ======================== */
-/* CONTEÚDO GERAL           */
+/* CONTE�DO GERAL           */
 /* ======================== */
 
 section {
@@ -709,7 +709,7 @@ footer a {
 }
 
 
-/* Continua abaixo com o restante... (arquivo está longo) */
+/* Continua abaixo com o restante... (arquivo est� longo) */
 
 /* ======================== */
 /* GALERIA / TESTEMUNHOS   */
@@ -729,7 +729,7 @@ footer a {
 }
 
 /* ======================== */
-/* FORMULÁRIOS              */
+/* FORMUL�RIOS              */
 /* ======================== */
 
 form {
@@ -797,22 +797,45 @@ button {
 
 .btn-scroll-top {
   position: fixed;
-  text-align: center;
-  bottom: -20px;
   right: 20px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
   text-decoration: none;
-  font-size: 1rem;
-  cursor: pointer;
+  background: #000;
+  color: var(--primary-color);
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+  z-index: 1100;
 }
 .btn-scroll-top:hover {
-  background-color: #ffde59;
-  padding: 5px;
-  border-radius: 5px;
+  background-color: var(--primary-color);
   color: #000;
-  transition: background-color 0.3s;
+}
+.btn-scroll-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+@media (max-width: 600px) {
+  .btn-scroll-top {
+    right: 12px;
+    bottom: 12px;
+    font-size: 0.9rem;
+    padding: 9px 12px;
+  }
 }
 /* ======================== */
-/* PRODUTOS À VENDA         */
+/* PRODUTOS � VENDA         */
 /* ======================== */
 
 .produtos {
@@ -1087,7 +1110,7 @@ button {
 }
 
 /* ======================== */
-/* PAGINAÇÃO E FILTROS      */
+/* PAGINA��O E FILTROS      */
 /* ======================== */
 
 .filtros {
@@ -1119,7 +1142,7 @@ button {
 }
 
 /* ======================== */
-/* SERVIÇOS REALIZADOS      */
+/* SERVI�OS REALIZADOS      */
 /* ======================== */
 
 .servicos-wrap {
@@ -1169,6 +1192,11 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   margin-top: 20px;
+}
+@media (min-width: 1200px) {
+  .servicos-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .servico-card {
