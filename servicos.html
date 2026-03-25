@@ -199,9 +199,7 @@
       const titulo = servico.titulo || "serviço";
       const data = servico.dataFormatada ? ` realizado em ${servico.dataFormatada}` : "";
       return [
-        `Olá! Vi o serviço *${titulo}*${data} e gostaria de solicitar algo parecido.`,
-        "",
-        `Link: ${window.location.href}`
+        `Olá! Vi o serviço *${titulo}*${data} e gostaria de solicitar algo parecido.`
       ].join("\\n");
     }
 
