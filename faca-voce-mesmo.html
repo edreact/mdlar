@@ -225,29 +225,6 @@
 
     diySearch.addEventListener("input", filtrarDicas);
     
-//Botão voltar ao topo
-    const voltarTopo = document.getElementById("voltar-topo");
-    let rolagemTimer;
-
-    function mostrarVoltarTopo() {
-      if (!voltarTopo) return;
-      const deveMostrar = window.scrollY > 420;
-      voltarTopo.classList.toggle("visivel", deveMostrar);
-    }
-
-    window.addEventListener("scroll", () => {
-      if (!voltarTopo) return;
-      voltarTopo.classList.remove("visivel");
-      clearTimeout(rolagemTimer);
-      rolagemTimer = setTimeout(mostrarVoltarTopo, 180);
-    }, { passive: true });
-
-    if (voltarTopo) {
-      voltarTopo.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-      mostrarVoltarTopo();
-    }
   </script>
 </body>
 </html>
