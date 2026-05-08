@@ -392,7 +392,9 @@
               ${servico.dataFormatada ? `<span>Realizado em ${servico.dataFormatada}</span>` : "<span>Serviço recente</span>"}
             </div>
             <div class="servico-actions">
-              <a class="btn btn-outline" href="servicos.html?servico=${encodeURIComponent(servico.id)}">Ver detalhes</a>
+              <button class="btn btn-outline" data-modal="modal-${servico.id}">
+                Ver detalhes
+              </button>
               <a class="btn btn-primary" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(montarMensagem(servico))}" target="_blank" rel="noopener noreferrer">Solicitar este serviço</a>
               <button class="btn btn-save ${ehFavorito(servico.id, favoritos) ? "ativo" : ""}" data-favorito="${servico.id}">
                 ${ehFavorito(servico.id, favoritos) ? "Salvo" : "Salvar"}
