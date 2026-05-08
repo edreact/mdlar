@@ -499,24 +499,25 @@
       });
     }
 
-    function abrirModal(modal) {
-      if (!modal) return;
-      modal.style.display = "block";
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
-      const foco = modal.querySelector("[data-close], a, button");
-      if (foco) foco.focus();
-    }
+  function abrirModal(modal) {
+  if (!modal) return;
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+
+  const foco = modal.querySelector("[data-close], a, button");
+
+  if (foco) foco.focus();
+}
 
     function fecharModal(modal) {
-      if (!modal) return;
-      modal.style.display = "none";
-      modal.setAttribute("aria-hidden", "true");
-      pausarVideos(modal);
-      if (!document.querySelector('.modal[aria-hidden="false"]')) {
-        document.body.classList.remove("modal-open");
-      }
-    }
+  if (!modal) return;
+
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+
+  pausarVideos(modal);
+}
 
     function pausarVideos(modal) {
       modal.querySelectorAll("video").forEach(v => v.pause());
