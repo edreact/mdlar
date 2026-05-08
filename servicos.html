@@ -54,6 +54,7 @@
          <li><a href="/">Home</a></li>
          <li><a href="/#formulario">Solicite um orçamento</a></li>
          <li><a href="servicos.html">Serviços realizados</a></li>
+         <li><a href="faca-voce-mesmo.html">Faça você mesmo</a></li>
          <li><a href="vendas.html">Venda de ativos</a></li>
       </ul>
     </nav>
@@ -79,9 +80,6 @@
     <section class="servicos-wrap visible" id="lista-servicos" aria-live="polite">
       <div class="servicos-filtros">
         <input type="text" id="busca-servicos" placeholder="Buscar serviço..." aria-label="Buscar serviço">
-        <select id="categoria-servicos" aria-label="Filtrar por categoria">
-          <option value="">Todas as categorias</option>
-        </select>
         <select id="ordem-servicos" aria-label="Ordenar serviços">
           <option value="recentes">Mais recentes</option>
           <option value="antigos">Mais antigos</option>
@@ -93,6 +91,33 @@
           Mostrar apenas salvos
         </label>
       </div>
+      <div class="servicos-categorias" id="categoria-servicos" aria-label="Filtrar por tipo de serviço">
+        <button type="button" class="categoria-chip active" data-categoria="">Todos</button>
+        <button type="button" class="categoria-chip" data-categoria="ELÉTRICA">Elétrica</button>
+        <button type="button" class="categoria-chip" data-categoria="HIDRÁULICA">Hidráulica</button>
+        <button type="button" class="categoria-chip" data-categoria="QUADROS/ESPELHOS">Quadros/Espelhos</button>
+        <button type="button" class="categoria-chip" data-categoria="IMOBILIÁRIO">Imobiliário</button>
+        <button type="button" class="categoria-chip" data-categoria="CORTINAS/PERSIANAS">Cortinas/Persianas</button>
+        <button type="button" class="categoria-chip" data-categoria="ALVENARIA">Alvenaria</button>
+        <button type="button" class="categoria-chip" data-categoria="PINTURA">Pintura</button>
+        <button type="button" class="categoria-chip" data-categoria="JARDINAGEM">Jardinagem</button>
+        <button type="button" class="categoria-chip" data-categoria="CARPINTARIA">Carpintaria</button>
+        <button type="button" class="categoria-chip" data-categoria="SERRALHERIA">Serralheria</button>
+      </div>
+      <label class="categoria-mobile-label" for="categoria-servicos-mobile">Categoria</label>
+      <select id="categoria-servicos-mobile" class="categoria-mobile" aria-label="Filtrar por categoria">
+        <option value="">Todos</option>
+        <option value="ELÉTRICA">Elétrica</option>
+        <option value="HIDRÁULICA">Hidráulica</option>
+        <option value="QUADROS/ESPELHOS">Quadros/Espelhos</option>
+        <option value="IMOBILIÁRIO">Imobiliário</option>
+        <option value="CORTINAS/PERSIANAS">Cortinas/Persianas</option>
+        <option value="ALVENARIA">Alvenaria</option>
+        <option value="PINTURA">Pintura</option>
+        <option value="JARDINAGEM">Jardinagem</option>
+        <option value="CARPINTARIA">Carpintaria</option>
+        <option value="SERRALHERIA">Serralheria</option>
+      </select>
 
       <div class="servicos-stats">
         <p><strong id="servicos-total">0</strong> serviços encontrados</p>
@@ -114,12 +139,13 @@
   </footer>
 
   <script>
-    const apiUrl = "https://script.google.com/macros/s/AKfycbwL0SID-5D-XBaKWLnskHT_J_Xle3CLsmsXAih5YduBbjP28blfoNQYqI5ys6xKMHl0/exec";
+    const apiUrl = "https://script.google.com/macros/s/AKfycbwnz3jkHDoRYzYeFnMZbQ9xAFcjhX8uEtkR7k03B-GCHAApFf1ihCg__uA6IbWSIpVp/exec";
     const fallbackImage = "https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg";
     const whatsappNumber = "5567981827065";
     const favoritosKey = "mdlar_servicos_favoritos";
     let todosServicos = [];
     let servicoInicial = null;
+    let categoriaAtiva = "";
 
     function obterTexto(item, campos) {
       for (const campo of campos) {
@@ -134,6 +160,14 @@
     function limparTexto(texto) {
       if (texto === null || texto === undefined) return "";
       return String(texto).trim();
+    }
+
+    function normalizarCategoria(categoria) {
+      return String(categoria || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim()
+        .toUpperCase();
     }
 
     function parseDate(valor) {
@@ -371,6 +405,10 @@
         const modal = document.createElement("div");
         modal.id = `modal-${servico.id}`;
         modal.className = "modal";
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-modal", "true");
+        modal.setAttribute("aria-labelledby", `titulo-${servico.id}`);
+        modal.setAttribute("aria-hidden", "true");
         const mediaItens = [];
         servico.imagens.forEach(img => mediaItens.push({ type: "image", url: img }));
         if (servico.video) mediaItens.push({ type: servico.video.type, url: servico.video.url });
@@ -402,8 +440,9 @@
 
         modal.innerHTML = `
           <div class="modal-content service-modal">
-            <span class="close" data-close="${modal.id}">&times;</span>
-            <h3>${servico.titulo}</h3>
+            <button type="button" class="close" data-close="${modal.id}" aria-label="Fechar detalhes">&times;</button>
+            ${servico.categoria ? `<span class="servico-categoria selo-modal">${servico.categoria}</span>` : ""}
+            <h3 id="titulo-${servico.id}">${servico.titulo}</h3>
             ${servico.dataFormatada ? `<p class="servico-meta-modal">Realizado em ${servico.dataFormatada}</p>` : ""}
             <div class="modal-slider servico-slider">
               ${slides}
@@ -429,7 +468,6 @@
 
     function aplicarFiltros() {
       const busca = document.getElementById("busca-servicos").value.toLowerCase();
-      const categoria = document.getElementById("categoria-servicos").value.toLowerCase();
       const ordem = document.getElementById("ordem-servicos").value;
       const somenteFavoritos = document.getElementById("filtro-favoritos").checked;
       const favoritos = lerFavoritos();
@@ -438,8 +476,8 @@
       if (busca) {
         lista = lista.filter(s => s.titulo.toLowerCase().includes(busca) || (s.descricao || "").toLowerCase().includes(busca));
       }
-      if (categoria) {
-        lista = lista.filter(s => (s.categoria || "").toLowerCase() === categoria);
+      if (categoriaAtiva) {
+        lista = lista.filter(s => normalizarCategoria(s.categoria) === categoriaAtiva);
       }
       if (somenteFavoritos) {
         lista = lista.filter(s => favoritos.has(String(s.id)));
@@ -448,15 +486,36 @@
       renderizarServicos(lista);
     }
 
-    function preencherCategorias(servicos) {
-      const select = document.getElementById("categoria-servicos");
-      const categorias = Array.from(new Set(servicos.map(s => s.categoria).filter(Boolean)));
-      categorias.forEach(cat => {
-        const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
-        select.appendChild(opt);
+    function atualizarCategoriasDisponiveis(servicos) {
+      const disponiveis = new Set(servicos.map(s => normalizarCategoria(s.categoria)).filter(Boolean));
+      document.querySelectorAll(".categoria-chip[data-categoria]").forEach(btn => {
+        const valor = normalizarCategoria(btn.dataset.categoria);
+        const deveMostrar = !valor || disponiveis.has(valor);
+        btn.disabled = Boolean(valor && !deveMostrar);
       });
+      document.querySelectorAll("#categoria-servicos-mobile option").forEach(option => {
+        const valor = normalizarCategoria(option.value);
+        option.disabled = Boolean(valor && !disponiveis.has(valor));
+      });
+    }
+
+    function abrirModal(modal) {
+      if (!modal) return;
+      modal.style.display = "block";
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      const foco = modal.querySelector("[data-close], a, button");
+      if (foco) foco.focus();
+    }
+
+    function fecharModal(modal) {
+      if (!modal) return;
+      modal.style.display = "none";
+      modal.setAttribute("aria-hidden", "true");
+      pausarVideos(modal);
+      if (!document.querySelector('.modal[aria-hidden="false"]')) {
+        document.body.classList.remove("modal-open");
+      }
     }
 
     function pausarVideos(modal) {
@@ -487,19 +546,15 @@
       if (alvo.matches("[data-modal]")) {
         const id = alvo.getAttribute("data-modal");
         const modal = document.getElementById(id);
-        if (modal) modal.style.display = "block";
+        abrirModal(modal);
       }
       if (alvo.matches("[data-close]")) {
         const id = alvo.getAttribute("data-close");
         const modal = document.getElementById(id);
-        if (modal) {
-          modal.style.display = "none";
-          pausarVideos(modal);
-        }
+        fecharModal(modal);
       }
       if (alvo.classList.contains("modal")) {
-        alvo.style.display = "none";
-        pausarVideos(alvo);
+        fecharModal(alvo);
       }
       if (alvo.matches("[data-prev]")) {
         const id = alvo.getAttribute("data-prev");
@@ -537,13 +592,13 @@
       .then(data => {
         const lista = (data.saida || data.servicos || data.items || []).map((item, idx) => montarServico(item, idx));
         todosServicos = lista;
-        preencherCategorias(todosServicos);
+        atualizarCategoriasDisponiveis(todosServicos);
         aplicarFiltros();
         if (servicoInicial) {
           const alvo = todosServicos.find(s => s.id === servicoInicial);
           if (alvo) {
             const modal = document.getElementById(`modal-${alvo.id}`);
-            if (modal) modal.style.display = "block";
+            abrirModal(modal);
           }
         }
       })
@@ -553,9 +608,29 @@
       });
 
     document.getElementById("busca-servicos").addEventListener("input", aplicarFiltros);
-    document.getElementById("categoria-servicos").addEventListener("change", aplicarFiltros);
     document.getElementById("ordem-servicos").addEventListener("change", aplicarFiltros);
     document.getElementById("filtro-favoritos").addEventListener("change", aplicarFiltros);
+    document.getElementById("categoria-servicos").addEventListener("click", (event) => {
+      const btn = event.target.closest(".categoria-chip");
+      if (!btn || btn.disabled) return;
+      categoriaAtiva = normalizarCategoria(btn.dataset.categoria);
+      document.getElementById("categoria-servicos-mobile").value = btn.dataset.categoria;
+      document.querySelectorAll(".categoria-chip").forEach(item => item.classList.remove("active"));
+      btn.classList.add("active");
+      aplicarFiltros();
+    });
+    document.getElementById("categoria-servicos-mobile").addEventListener("change", (event) => {
+      categoriaAtiva = normalizarCategoria(event.target.value);
+      document.querySelectorAll(".categoria-chip").forEach(item => {
+        item.classList.toggle("active", normalizarCategoria(item.dataset.categoria) === categoriaAtiva);
+      });
+      aplicarFiltros();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      const modalAberto = document.querySelector('.modal[aria-hidden="false"]');
+      fecharModal(modalAberto);
+    });
 
     const params = new URLSearchParams(window.location.search);
     const servicoParam = params.get("servico");
@@ -564,6 +639,3 @@
   <script src="js/menu.js"></script>
 </body>
 </html>
-
-
-

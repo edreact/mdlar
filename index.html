@@ -80,6 +80,7 @@
          <li><a href="/">Home</a></li>
          <li><a href="/#formulario">Solicite um orçamento</a></li>
          <li><a href="servicos.html">Serviços realizados</a></li>
+         <li><a href="faca-voce-mesmo.html">Faça você mesmo</a></li>
          <li><a href="vendas.html">Venda de ativos</a></li>
       </ul>
     </nav>
@@ -171,6 +172,53 @@
       <li><strong>Receba o orçamento.</strong> Respondemos com orientação e estimativa, e combinamos data e horário.</li>
       <li><strong>Execução e finalização.</strong> Fazemos o serviço com organização e você confere o resultado.</li>
     </ol>
+  </section>
+
+  <section class="service-checklist" aria-labelledby="checklist-title">
+    <div class="section-heading">
+      <h2 id="checklist-title">Monte seu pedido em poucos cliques</h2>
+      <p>Selecione o tipo de serviço, informe o básico e abra o WhatsApp com a mensagem pronta.</p>
+    </div>
+    <form class="checklist-form" id="checklist-form">
+      <fieldset>
+        <legend>Tipo de serviço</legend>
+        <div class="checklist-options">
+          <label><input type="radio" name="tipo" value="Elétrica" checked> Elétrica</label>
+          <label><input type="radio" name="tipo" value="Hidráulica"> Hidráulica</label>
+          <label><input type="radio" name="tipo" value="Quadros/Espelhos"> Quadros/Espelhos</label>
+          <label><input type="radio" name="tipo" value="Imobiliário"> Imobiliário</label>
+          <label><input type="radio" name="tipo" value="Cortinas/Persianas"> Cortinas/Persianas</label>
+          <label><input type="radio" name="tipo" value="Alvenaria"> Alvenaria</label>
+          <label><input type="radio" name="tipo" value="Pintura"> Pintura</label>
+          <label><input type="radio" name="tipo" value="Jardinagem"> Jardinagem</label>
+          <label><input type="radio" name="tipo" value="Carpintaria"> Carpintaria</label>
+          <label><input type="radio" name="tipo" value="Serralheria"> Serralheria</label>
+        </div>
+      </fieldset>
+      <div class="checklist-grid">
+        <label for="checklist-problema">
+          O que precisa resolver?
+          <textarea id="checklist-problema" name="problema" rows="3" placeholder="Ex.: torneira vazando, tomada esquentando, quadro para instalar"></textarea>
+        </label>
+        <label for="checklist-bairro">
+          Bairro
+          <input id="checklist-bairro" name="bairro" type="text" autocomplete="address-level3" placeholder="Ex.: Centro">
+        </label>
+        <label for="checklist-urgencia">
+          Urgência
+          <select id="checklist-urgencia" name="urgencia">
+            <option value="Posso agendar">Posso agendar</option>
+            <option value="Preciso o quanto antes">Preciso o quanto antes</option>
+            <option value="É emergência">É emergência</option>
+          </select>
+        </label>
+      </div>
+      <label class="consent checklist-consent">
+        <input type="checkbox" id="checklist-foto" name="foto">
+        Tenho foto ou vídeo para enviar no WhatsApp.
+      </label>
+      <a class="btn btn-whatsapp checklist-submit" id="checklist-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Abrir WhatsApp com pedido</a>
+    </form>
   </section>
 
   <section class="trust" aria-label="Diferenciais">
@@ -288,6 +336,35 @@
     </script>
   </section>
   
+  <section class="maintenance-tips" aria-labelledby="tips-title">
+    <div class="section-heading">
+      <h2 id="tips-title">Dicas rápidas de manutenção</h2>
+      <p>Alguns sinais pequenos merecem atenção antes de virarem dor de cabeça.</p>
+    </div>
+    <div class="tips-grid">
+      <article class="tip-card">
+        <h3>Disjuntor desarmando</h3>
+        <p>Quando acontece com frequência, pode indicar sobrecarga, fuga de corrente ou equipamento com defeito.</p>
+        <a href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20meu%20disjuntor%20est%C3%A1%20desarmando%20com%20frequ%C3%AAncia.%20Pode%20avaliar%3F" target="_blank" rel="noopener noreferrer">Pedir avaliação</a>
+      </article>
+      <article class="tip-card">
+        <h3>Vazamento pequeno</h3>
+        <p>Gotejamento constante pode aumentar a conta de água e causar infiltração em móveis, paredes ou pisos.</p>
+        <a href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20tenho%20um%20vazamento%20pequeno%20e%20quero%20avaliar%20antes%20de%20piorar." target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
+      </article>
+      <article class="tip-card">
+        <h3>Tomada esquentando</h3>
+        <p>Aquecimento, cheiro forte ou mau contato não devem ser ignorados. O ideal é revisar antes de continuar usando.</p>
+        <a href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20tenho%20uma%20tomada%20esquentando%20ou%20com%20mau%20contato.%20Pode%20verificar%3F" target="_blank" rel="noopener noreferrer">Verificar problema</a>
+      </article>
+      <article class="tip-card">
+        <h3>Porta raspando</h3>
+        <p>Porta desalinhada pode precisar de regulagem, ajuste de dobradiça ou pequeno reparo antes de danificar mais.</p>
+        <a href="https://wa.me/5567981827065?text=Ol%C3%A1%2C%20tenho%20uma%20porta%20raspando%20ou%20desalinhada.%20Gostaria%20de%20um%20ajuste." target="_blank" rel="noopener noreferrer">Solicitar ajuste</a>
+      </article>
+    </div>
+  </section>
+
   <section class="testimonials">
     <h2>O que dizem os clientes</h2>
     <!-- Elfsight Google Reviews | Untitled Google Reviews -->
@@ -382,10 +459,63 @@
   </footer>
 
   <a class="whatsapp-fixo" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">📞</a>
+  <button type="button" class="voltar-topo" id="voltar-topo" aria-label="Voltar ao topo">↑</button>
 
   <script src="js/menu.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/home-feed.js" defer></script>
+  <script>
+    const checklistForm = document.getElementById("checklist-form");
+    const checklistWhatsapp = document.getElementById("checklist-whatsapp");
+
+    function atualizarChecklistWhatsapp() {
+      if (!checklistForm || !checklistWhatsapp) return;
+      const dados = new FormData(checklistForm);
+      const tipo = dados.get("tipo") || "serviço residencial";
+      const problema = String(dados.get("problema") || "").trim();
+      const bairro = String(dados.get("bairro") || "").trim();
+      const urgencia = dados.get("urgencia") || "Posso agendar";
+      const temFoto = document.getElementById("checklist-foto").checked;
+      const mensagem = [
+        `Olá! Preciso de um serviço de ${tipo}.`,
+        problema ? `Problema: ${problema}.` : "",
+        bairro ? `Bairro: ${bairro}.` : "",
+        `Urgência: ${urgencia}.`,
+        temFoto ? "Tenho foto ou vídeo para enviar." : "Ainda não tenho foto/vídeo."
+      ].filter(Boolean).join("\n");
+
+      checklistWhatsapp.href = `https://wa.me/5567981827065?text=${encodeURIComponent(mensagem)}`;
+    }
+
+    if (checklistForm) {
+      checklistForm.addEventListener("input", atualizarChecklistWhatsapp);
+      checklistForm.addEventListener("change", atualizarChecklistWhatsapp);
+      atualizarChecklistWhatsapp();
+    }
+
+    const voltarTopo = document.getElementById("voltar-topo");
+    let rolagemTimer;
+
+    function mostrarVoltarTopo() {
+      if (!voltarTopo) return;
+      const deveMostrar = window.scrollY > 420;
+      voltarTopo.classList.toggle("visivel", deveMostrar);
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!voltarTopo) return;
+      voltarTopo.classList.remove("visivel");
+      clearTimeout(rolagemTimer);
+      rolagemTimer = setTimeout(mostrarVoltarTopo, 180);
+    }, { passive: true });
+
+    if (voltarTopo) {
+      voltarTopo.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      mostrarVoltarTopo();
+    }
+  </script>
  
 </body>
 </html>

@@ -4,7 +4,7 @@
   if (!produtosContainer && !servicosContainer) return;
 
   const produtosUrl = "https://script.google.com/macros/s/AKfycbyOvmxW2lzk-rrbDbd2K-e9_2joawZk81PsvEi1vIx7fzGFAx5C4Vj0Nq9XVo1OOagr9w/exec";
-  const servicosUrl = "https://script.google.com/macros/s/AKfycbwL0SID-5D-XBaKWLnskHT_J_Xle3CLsmsXAih5YduBbjP28blfoNQYqI5ys6xKMHl0/exec";
+  const servicosUrl = "https://script.google.com/macros/s/AKfycbwnz3jkHDoRYzYeFnMZbQ9xAFcjhX8uEtkR7k03B-GCHAApFf1ihCg__uA6IbWSIpVp/exec";
 
   function formatarPreco(valor) {
     const num = Number(String(valor || "").replace(/\./g, "").replace(",", "."));
@@ -40,12 +40,14 @@
     const imagem = escolherImagemServico(servico);
     const titulo = servico.TITULO || "Serviço realizado";
     const descricao = servico.DESCRICAO || "";
+    const categoria = servico.CATEGORIA || servico.categoria || "";
     const id = servico.ID ? String(servico.ID).toLowerCase().replace(/[^a-z0-9_-]/g, "") : "";
     const link = id ? `servicos.html?servico=${encodeURIComponent(id)}` : "servicos.html";
     return `
       <article class="sidebar-card">
         <img src="${imagem}" alt="${titulo}" loading="lazy" width="84" height="84">
         <div>
+          ${categoria ? `<span class="servico-categoria sidebar-categoria">${categoria}</span>` : ""}
           <h3>${titulo}</h3>
           <p>${descricao}</p>
           <a href="${link}">Ver detalhes</a>

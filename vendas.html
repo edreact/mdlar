@@ -54,6 +54,7 @@
          <li><a href="/">Home</a></li>
          <li><a href="/#formulario">Solicite um orçamento</a></li>
          <li><a href="servicos.html">Serviços realizados</a></li>
+         <li><a href="faca-voce-mesmo.html">Faça você mesmo</a></li>
          <li><a href="vendas.html">Venda de ativos</a></li>
       </ul>
     </nav>
@@ -177,10 +178,14 @@
         const modal = document.createElement("div");
         modal.id = produto.id;
         modal.className = "modal";
+        modal.setAttribute("role", "dialog");
+        modal.setAttribute("aria-modal", "true");
+        modal.setAttribute("aria-labelledby", `produto-titulo-${produto.id}`);
+        modal.setAttribute("aria-hidden", "true");
         modal.innerHTML = `
   <div class="modal-content">
-    <span class="close" onclick="fecharModal('${produto.id}')">&times;</span>
-    <h3>${produto.name}</h3>
+    <button type="button" class="close" onclick="fecharModal('${produto.id}')" aria-label="Fechar detalhes">&times;</button>
+    <h3 id="produto-titulo-${produto.id}">${produto.name}</h3>
 
     <div class="modal-slider">
       ${imagens
@@ -270,6 +275,10 @@
       const modal = document.getElementById(id);
       if (!modal) return;
       modal.style.display = 'block';
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      const fechar = modal.querySelector(".close");
+      if (fechar) fechar.focus();
       const produto = todosProdutos.find(p => p.id === id);
       if (produto) {
         document.title = `${produto.name} | Manutenção do Lar`;
@@ -283,7 +292,14 @@
       }
     }
     function fecharModal(id) {
-      document.getElementById(id).style.display = 'none';
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute("aria-hidden", "true");
+      }
+      if (!document.querySelector('.modal[aria-hidden="false"]')) {
+        document.body.classList.remove("modal-open");
+      }
       history.replaceState(null, "", location.pathname);
       document.title = tituloBase;
       const ogTitle = document.querySelector('meta[property="og:title"]');
@@ -298,6 +314,11 @@
         fecharModal(event.target.id);
       }
     }
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      const modalAberto = document.querySelector('.modal[aria-hidden="false"]');
+      if (modalAberto) fecharModal(modalAberto.id);
+    });
     function mudarSlide(id, direcao) {
       const modal = document.getElementById(id);
       const slides = modal.querySelectorAll(".slide");
