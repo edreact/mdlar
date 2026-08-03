@@ -21,7 +21,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="MobileOptimized" content="width">
-  <meta name="description" content="Portfólio de serviços realizados em Dourados e região. Veja fotos e vídeos dos últimos serviços e solicite um igual.">
+  <meta name="description" content="Portfólio de serviços realizados em Dourados, MS. Veja fotos e vídeos dos últimos serviços e solicite um igual.">
   <meta name="theme-color" content="#ffde59">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
@@ -54,8 +54,6 @@
          <li><a href="/">Home</a></li>
          <li><a href="/#formulario">Solicite um orçamento</a></li>
          <li><a href="servicos.html">Serviços realizados</a></li>
-         <li><a href="faca-voce-mesmo.html">Faça você mesmo</a></li>
-         <li><a href="vendas.html">Venda de ativos</a></li>
       </ul>
     </nav>
   </header>
@@ -71,7 +69,7 @@
         </div>
         <ul class="hero-badges" aria-label="Destaques rápidos">
           <li>Fotos e vídeos reais dos serviços</li>
-          <li>Atendimento em Dourados e região</li>
+          <li>Atendimento em Dourados, MS</li>
           <li>Solicitação rápida pelo WhatsApp</li>
         </ul>
       </div>
@@ -134,10 +132,29 @@
 
   <footer>
     <br><br>
-        <p>Atendimento em Dourados, MS | WhatsApp: <a href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">(67) 98182-7065</a> | Telefone: <a href="tel:+5567981827065">(67) 98182-7065</a></p>
-        <button type="button" class="voltar-topo" id="voltar-topo" aria-label="Voltar ao topo">↑</button>
+    <p>Atendimento em Dourados, MS | WhatsApp: <a href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">(67) 98182-7065</a> | Telefone: <a href="tel:+5567981827065">(67) 98182-7065</a></p>
+    <div class="payment-methods" aria-label="Formas de pagamento">
+      <p>Aceitamos cartão, Pix ou dinheiro.</p>
+      <div class="payment-icons">
+        <span class="payment-badge visa" aria-label="Visa">VISA</span>
+        <span class="payment-badge mastercard" aria-label="Mastercard"><span></span><span></span></span>
+        <span class="payment-badge elo" aria-label="Elo"><span></span>elo</span>
+        <span class="payment-badge amex" aria-label="American Express"><small>AMERICAN</small><strong>EXPRESS</strong></span>
+        <span class="payment-badge pix" aria-label="Pix">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.7 20.3 12 12 20.3 3.7 12 12 3.7Zm0 3.2L6.9 12l5.1 5.1 5.1-5.1L12 6.9Z"/></svg>
+          PIX
+        </span>
+      </div>
+    </div>
+    <button type="button" class="voltar-topo" id="voltar-topo" aria-label="Voltar ao topo">↑</button>
     <br><br>
   </footer>
+
+  <a class="whatsapp-fixo" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16 3C8.8 3 3 8.6 3 15.6c0 2.4.7 4.6 1.9 6.5L3.6 29l7.1-1.8c1.7.8 3.5 1.2 5.3 1.2 7.2 0 13-5.6 13-12.6S23.2 3 16 3Zm0 23.1c-1.7 0-3.3-.4-4.7-1.2l-.5-.3-4.2 1.1.8-4.1-.3-.5c-1.1-1.6-1.7-3.5-1.7-5.5 0-5.7 4.8-10.3 10.7-10.3s10.7 4.6 10.7 10.3S21.9 26.1 16 26.1Zm6-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4Z"/>
+    </svg>
+  </a>
 
   <script>
     const apiUrl = "https://script.google.com/macros/s/AKfycbwnz3jkHDoRYzYeFnMZbQ9xAFcjhX8uEtkR7k03B-GCHAApFf1ihCg__uA6IbWSIpVp/exec";
@@ -161,6 +178,15 @@
     function limparTexto(texto) {
       if (texto === null || texto === undefined) return "";
       return String(texto).trim();
+    }
+
+    function escapeHtml(valor) {
+      return String(valor || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
     function normalizarCategoria(categoria) {
@@ -375,20 +401,23 @@
 
       lista.forEach(servico => {
         const imagemPrincipal = servico.imagens[0] || fallbackImage;
+        const tituloHtml = escapeHtml(servico.titulo);
+        const descricaoHtml = escapeHtml(servico.descricao || "Serviço realizado com qualidade e cuidado.");
+        const categoriaHtml = escapeHtml(servico.categoria);
         const card = document.createElement("article");
         card.className = "servico-card";
         card.innerHTML = `
           <div class="servico-media">
-            <img src="${imagemPrincipal}" alt="${servico.titulo}">
+            <img src="${escapeHtml(imagemPrincipal)}" alt="${tituloHtml}">
             <div class="servico-badges">
               ${servico.imagens.length ? `<span class="badge">${servico.imagens.length} foto(s)</span>` : ""}
               ${servico.temVideo ? `<span class="badge badge-video">Vídeo</span>` : ""}
             </div>
           </div>
           <div class="servico-body">
-            ${servico.categoria ? `<p class="servico-categoria">${servico.categoria}</p>` : ""}
-            <h3>${servico.titulo}</h3>
-            <p class="servico-desc">${servico.descricao || "Serviço realizado com qualidade e cuidado."}</p>
+            ${servico.categoria ? `<p class="servico-categoria">${categoriaHtml}</p>` : ""}
+            <h3>${tituloHtml}</h3>
+            <p class="servico-desc">${descricaoHtml}</p>
             <div class="servico-meta">
               ${servico.dataFormatada ? `<span>Realizado em ${servico.dataFormatada}</span>` : "<span>Serviço recente</span>"}
             </div>
@@ -417,20 +446,22 @@
         if (servico.video) mediaItens.push({ type: servico.video.type, url: servico.video.url });
 
         const slides = mediaItens.map((media, idx) => {
+          const mediaUrl = escapeHtml(media.url);
           if (media.type === "image") {
-            return `<img src="${media.url}" class="media-slide ${idx === 0 ? "active" : ""}" alt="${servico.titulo}">`;
+            return `<img src="${mediaUrl}" class="media-slide ${idx === 0 ? "active" : ""}" alt="${tituloHtml}">`;
           }
           if (media.type === "embed") {
-            return `<iframe src="${media.url}" class="media-slide ${idx === 0 ? "active" : ""}" title="${servico.titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            return `<iframe src="${mediaUrl}" class="media-slide ${idx === 0 ? "active" : ""}" title="${tituloHtml}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
           }
-          return `<video src="${media.url}" class="media-slide ${idx === 0 ? "active" : ""}" controls></video>`;
+          return `<video src="${mediaUrl}" class="media-slide ${idx === 0 ? "active" : ""}" controls></video>`;
         }).join("");
 
         const thumbs = mediaItens.map((media, idx) => {
+          const mediaUrl = escapeHtml(media.url);
           if (media.type === "image") {
             return `
               <button type="button" class="thumb ${idx === 0 ? "active" : ""}" data-slide="${idx}">
-                <img src="${media.url}" alt="${servico.titulo} - mídia ${idx + 1}">
+                <img src="${mediaUrl}" alt="${tituloHtml} - mídia ${idx + 1}">
               </button>
             `;
           }
@@ -444,8 +475,8 @@
         modal.innerHTML = `
           <div class="modal-content service-modal">
             <button type="button" class="close" data-close="${modal.id}" aria-label="Fechar detalhes">&times;</button>
-            ${servico.categoria ? `<span class="servico-categoria selo-modal">${servico.categoria}</span>` : ""}
-            <h3 id="titulo-${servico.id}">${servico.titulo}</h3>
+            ${servico.categoria ? `<span class="servico-categoria selo-modal">${categoriaHtml}</span>` : ""}
+            <h3 id="titulo-${servico.id}">${tituloHtml}</h3>
             ${servico.dataFormatada ? `<p class="servico-meta-modal">Realizado em ${servico.dataFormatada}</p>` : ""}
             <div class="modal-slider servico-slider">
               ${slides}
@@ -455,7 +486,7 @@
               ` : ""}
             </div>
             ${mediaItens.length > 1 ? `<div class="modal-thumbs">${thumbs}</div>` : ""}
-            <p>${servico.descricao || "Serviço realizado com qualidade e cuidado."}</p>
+            <p>${descricaoHtml}</p>
             <div class="share-row">
               <a class="btn-whatsapp" href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(montarMensagem(servico))}" target="_blank" rel="noopener noreferrer">Quero este serviço no WhatsApp</a>
               <button class="btn btn-save ${ehFavorito(servico.id, favoritos) ? "ativo" : ""}" data-favorito="${servico.id}">
@@ -665,5 +696,6 @@
     
   </script>
   <script src="js/menu.js"></script>
+  <script src="js/conversions.js"></script>
 </body>
 </html>

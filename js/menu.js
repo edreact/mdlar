@@ -1,8 +1,9 @@
 const btnMobile = document.getElementById('btn-mobile');
+const nav = document.getElementById('nav');
 
 function toggleMenu(event) {
   if (event.type === 'touchstart') event.preventDefault();
-  const nav = document.getElementById('nav');
+  if (!nav) return;
   nav.classList.toggle('active');
   const active = nav.classList.contains('active');
   event.currentTarget.setAttribute('aria-expanded', active);
@@ -13,5 +14,7 @@ function toggleMenu(event) {
   }
 }
 
-btnMobile.addEventListener('click', toggleMenu);
-btnMobile.addEventListener('touchstart', toggleMenu);
+if (btnMobile) {
+  btnMobile.addEventListener('click', toggleMenu);
+  btnMobile.addEventListener('touchstart', toggleMenu);
+}

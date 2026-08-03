@@ -1,3 +1,6 @@
 /servicos  /servicos.html  200
-/vendas  /vendas.html  200
-/faca-voce-mesmo  /faca-voce-mesmo.html  200
+/vendas  /  301
+/vendas.html  /  301
+/faca-voce-mesmo  /  301
+/faca-voce-mesmo.html  /  301
+/share.html  /  301
