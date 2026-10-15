@@ -643,8 +643,12 @@ section > h2 {
 
 .gallery-grid {
   display: grid;
-  gap: 14px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .gallery-grid figure {
@@ -658,6 +662,12 @@ section > h2 {
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.gallery-grid .comparison-figure:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
 }
 
 .gallery-grid .comparison-figure comparar-imagens {
@@ -694,6 +704,12 @@ section > h2 {
   padding: 12px 16px;
   color: var(--muted-text);
   text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-grid .comparison-figure {
+    transition: none;
+  }
 }
 
 .faq-list details {

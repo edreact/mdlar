@@ -114,9 +114,8 @@
         throw new TypeError("A API não retornou serviços de antes e depois válidos.");
       }
 
-      const fragment = document.createDocumentFragment();
-      cards.forEach(card => fragment.append(card));
-      container.replaceChildren(fragment);
+      container.innerHTML = "";
+      cards.forEach(card => container.append(card));
     } catch (error) {
       console.warn(
         "Não foi possível carregar o portfólio remoto; mantendo o conteúdo padrão.",
