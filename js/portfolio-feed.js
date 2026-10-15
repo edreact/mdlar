@@ -4,14 +4,6 @@
   const API_SHEET_NAME = "AntesEDepois";
   const REQUEST_TIMEOUT_MS = 10000;
 
-  function getPortfolioList(payload) {
-    if (Array.isArray(payload)) return payload;
-    if (payload && Array.isArray(payload.saida)) return payload.saida;
-    if (payload && Array.isArray(payload.servicos)) return payload.servicos;
-    if (payload && Array.isArray(payload.items)) return payload.items;
-    throw new TypeError("A API do portfólio retornou um formato JSON inválido.");
-  }
-
   function getImageUrl(value) {
     if (typeof value !== "string" || !value.trim()) return null;
 
@@ -102,10 +94,14 @@
         throw new Error(`A API do portfólio respondeu com HTTP ${response.status}.`);
       }
 
-      const payload = await response.json();
-      const items = getPortfolioList(payload);
+      const dados = await response.json();
+      const listaAba = dados.saida || [];
 
-      if (items.length === 0) {
+      if (!Array.isArray(listaAba)) {
+        throw new TypeError("A propriedade 'saida' da API deve ser uma lista.");
+      }
+
+      if (listaAba.length === 0) {
         container.replaceChildren(
           createStatusMessage(
             "Novos serviços serão publicados em breve.",
@@ -115,7 +111,11 @@
         return;
       }
 
-      const cards = items.map(createPortfolioCard).filter(Boolean);
+      const cards = [];
+      listaAba.forEach(item => {
+        const card = createPortfolioCard(item);
+        if (card) cards.push(card);
+      });
       if (cards.length === 0) {
         throw new TypeError("A API não retornou serviços de antes e depois válidos.");
       }
