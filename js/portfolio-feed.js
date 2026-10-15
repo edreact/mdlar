@@ -86,6 +86,8 @@
 
     try {
       const response = await fetch(url, {
+        method: "GET",
+        redirect: "follow",
         signal: controller.signal,
         headers: { Accept: "application/json" }
       });
