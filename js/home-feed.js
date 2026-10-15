@@ -27,7 +27,7 @@
 
     return `
       <article class="sidebar-card">
-        <img src="${imagem}" alt="${titulo}" loading="lazy" width="84" height="84">
+        <img src="${imagem}" alt="${titulo} — serviço residencial realizado em Dourados, MS" loading="lazy" width="84" height="84">
         <div>
           ${categoria ? `<span class="servico-categoria sidebar-categoria">${categoria}</span>` : ""}
           <h3>${titulo}</h3>

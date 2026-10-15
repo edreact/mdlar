@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700&display=swap">
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7620069477591767"
    crossorigin="anonymous"></script>
@@ -44,7 +44,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <header id="header">
-    <a href="/"><img id="img-logo" src="img/logo.jpg" href="/" alt="logo"></a>
+    <a href="/"><img id="img-logo" src="img/logo.jpg" alt="Manutenção do Lar - manutenção residencial em Dourados" width="474" height="431"></a>
     <a id="logo" href="/">Manutenção do Lar</a>
     <nav id="nav">
       <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu" aria-expanded="false"><!--Menu-->
@@ -408,7 +408,7 @@
         card.className = "servico-card";
         card.innerHTML = `
           <div class="servico-media">
-            <img src="${escapeHtml(imagemPrincipal)}" alt="${tituloHtml}">
+            <img src="${escapeHtml(imagemPrincipal)}" alt="${tituloHtml} — serviço residencial realizado em Dourados, MS" width="800" height="600" loading="lazy">
             <div class="servico-badges">
               ${servico.imagens.length ? `<span class="badge">${servico.imagens.length} foto(s)</span>` : ""}
               ${servico.temVideo ? `<span class="badge badge-video">Vídeo</span>` : ""}
@@ -448,7 +448,7 @@
         const slides = mediaItens.map((media, idx) => {
           const mediaUrl = escapeHtml(media.url);
           if (media.type === "image") {
-            return `<img src="${mediaUrl}" class="media-slide ${idx === 0 ? "active" : ""}" alt="${tituloHtml}">`;
+            return `<img src="${mediaUrl}" class="media-slide ${idx === 0 ? "active" : ""}" alt="${tituloHtml} — serviço residencial realizado em Dourados, MS" width="1200" height="900">`;
           }
           if (media.type === "embed") {
             return `<iframe src="${mediaUrl}" class="media-slide ${idx === 0 ? "active" : ""}" title="${tituloHtml}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
@@ -461,7 +461,7 @@
           if (media.type === "image") {
             return `
               <button type="button" class="thumb ${idx === 0 ? "active" : ""}" data-slide="${idx}">
-                <img src="${mediaUrl}" alt="${tituloHtml} - mídia ${idx + 1}">
+                <img src="${mediaUrl}" alt="${tituloHtml} - mídia ${idx + 1}" width="56" height="56" loading="lazy">
               </button>
             `;
           }
