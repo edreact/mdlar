@@ -689,6 +689,13 @@ section > h2 {
   text-align: center;
 }
 
+.gallery-status,
+.gallery-empty {
+  padding: 12px 16px;
+  color: var(--muted-text);
+  text-align: center;
+}
+
 .faq-list details {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
