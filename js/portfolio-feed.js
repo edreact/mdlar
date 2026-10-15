@@ -1,5 +1,5 @@
 (() => {
-  const API_BASE_URL = "https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec";
+  const API_BASE_URL = "https://script.google.com/macros/s/AKfycbx4zwMuHbcki8xAulUNPPp90Q8wrdNQSfRMXE9ra7EDy2v7TfbKRgCoxaPgRdm6owzj/exec";
   const API_SHEET_PARAMETER = "aba";
   const API_SHEET_NAME = "AntesEDepois";
 

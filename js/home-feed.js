@@ -2,7 +2,7 @@
   const servicosContainer = document.getElementById("sidebar-servicos-list");
   if (!servicosContainer) return;
 
-  const servicosUrl = new URL("https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec");
+  const servicosUrl = new URL("https://script.google.com/macros/s/AKfycbx4zwMuHbcki8xAulUNPPp90Q8wrdNQSfRMXE9ra7EDy2v7TfbKRgCoxaPgRdm6owzj/exec");
   servicosUrl.searchParams.set("aba", "SERVICOS");
 
   function escapeHtml(valor) {
