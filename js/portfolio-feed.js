@@ -2,7 +2,6 @@
   const API_BASE_URL = "https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec";
   const API_SHEET_PARAMETER = "aba";
   const API_SHEET_NAME = "AntesEDepois";
-  const REQUEST_TIMEOUT_MS = 10000;
 
   function getImageUrl(value) {
     if (typeof value !== "string" || !value.trim()) return null;
@@ -78,17 +77,11 @@
     const url = new URL(API_BASE_URL);
     url.searchParams.set(API_SHEET_PARAMETER, API_SHEET_NAME);
 
-    const controller = new AbortController();
-    const timeoutId = window.setTimeout(
-      () => controller.abort(),
-      REQUEST_TIMEOUT_MS
-    );
-
     try {
       const response = await fetch(url, {
         method: "GET",
-        redirect: "follow",
-        signal: controller.signal
+        mode: "cors",
+        redirect: "follow"
       });
 
       if (!response.ok) {
@@ -130,7 +123,6 @@
         error
       );
     } finally {
-      window.clearTimeout(timeoutId);
       loadingMessage.remove();
     }
   }

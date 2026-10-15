@@ -5,7 +5,11 @@ async function fetchData() {
   try {
     const url = new URL(API_URL);
     url.searchParams.set("aba", "SERVICOS");
-    const response = await fetch(url, { method: "GET", redirect: "follow" });
+    const response = await fetch(url, {
+      method: "GET",
+      mode: "cors",
+      redirect: "follow"
+    });
     if (!response.ok) throw new Error(`A API respondeu com HTTP ${response.status}.`);
     const data = await response.json();
 

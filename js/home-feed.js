@@ -39,7 +39,11 @@
     `;
   }
 
-  fetch(servicosUrl, { method: "GET", redirect: "follow" })
+  fetch(servicosUrl, {
+    method: "GET",
+    mode: "cors",
+    redirect: "follow"
+  })
     .then(res => {
       if (!res.ok) throw new Error(`A API respondeu com HTTP ${res.status}.`);
       return res.json();
