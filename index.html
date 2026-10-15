@@ -143,45 +143,32 @@
   <section class="services">
     <h2>Serviços oferecidos</h2>
     <div class="services-grid">
-      <ul class="services-list">
-        <li>
-          <article>
-            <h3>Eletricista residencial</h3>
-            <p>Instalação e reparos elétricos em tomadas, interruptores, luminárias e disjuntores em Dourados.</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Encanador para vazamentos</h3>
-            <p>Reparos hidráulicos em torneiras, registros, sifões e pequenos vazamentos residenciais.</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Limpeza de caixas d'água</h3>
-            <p>Limpeza de caixa d'água residencial para ajudar a manter o reservatório limpo e em boas condições.</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Jardinagem residencial</h3>
-            <p>Cuidados e serviços de jardinagem para manter quintais e áreas externas organizados.</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Montador de móveis de cozinha</h3>
-            <p>Montagem de móveis residenciais, incluindo armários e móveis de cozinha.</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Reparos residenciais</h3>
-            <p>Pequenos consertos e manutenção para diferentes necessidades da sua casa em Dourados, MS.</p>
-          </article>
-        </li>
-      </ul>
-      <div class="services-aside" aria-label="Destaques">
+      <card-servico img="img/eletr.jpeg">
+        <h3 slot="titulo">Eletricista residencial</h3>
+        <p slot="descricao">Instalação e reparos elétricos em tomadas, interruptores, luminárias e disjuntores em Dourados.</p>
+      </card-servico>
+      <card-servico img="img/casal_hidrau.jpeg">
+        <h3 slot="titulo">Encanador para vazamentos</h3>
+        <p slot="descricao">Reparos hidráulicos em torneiras, registros, sifões e pequenos vazamentos residenciais.</p>
+      </card-servico>
+      <card-servico img="img/caixa-veda.webp">
+        <h3 slot="titulo">Limpeza de caixas d'água</h3>
+        <p slot="descricao">Limpeza de caixa d'água residencial para ajudar a manter o reservatório limpo e em boas condições.</p>
+      </card-servico>
+      <card-servico img="img/tesoura-grama.jpeg">
+        <h3 slot="titulo">Jardinagem residencial</h3>
+        <p slot="descricao">Cuidados e serviços de jardinagem para manter quintais e áreas externas organizados.</p>
+      </card-servico>
+      <card-servico img="img/instal_moveis.jpg">
+        <h3 slot="titulo">Montador de móveis</h3>
+        <p slot="descricao">Montagem de móveis residenciais, incluindo armários e móveis de cozinha.</p>
+      </card-servico>
+      <card-servico img="img/telhado.jpg">
+        <h3 slot="titulo">Reparos residenciais</h3>
+        <p slot="descricao">Pequenos consertos e manutenção para diferentes necessidades da sua casa em Dourados, MS.</p>
+      </card-servico>
+    </div>
+    <div class="services-aside" aria-label="Destaques">
         <div class="services-spotlight">
           <h3>Destaque do dia</h3>
           <p>Pequenos consertos com acabamento caprichado e limpeza final.</p>
@@ -195,7 +182,6 @@
           <p>“Organização e cuidado com sua casa.”</p>
           <p>“Do orçamento à entrega: tudo transparente.”</p>
         </div>
-      </div>
     </div>
   </section>
 
@@ -233,22 +219,30 @@
 
   <section class="gallery">
     <h2>Antes e Depois</h2>
-    <div class="gallery-grid">
-      <figure class="comparison-figure">
-        <comparar-imagens>
-          <img slot="antes" src="img/pint-antes.jpg" alt="Parede antes do serviço de pintura residencial em Dourados" loading="lazy" decoding="async" width="3264" height="1836">
-          <img slot="depois" src="img/pint-depois.jpg" alt="Parede após o serviço de pintura residencial em Dourados" loading="lazy" decoding="async" width="3264" height="1836">
-        </comparar-imagens>
-        <figcaption>Arraste para comparar o antes e depois da pintura residencial</figcaption>
-      </figure>
-      <figure>
-        <img src="img/telhado.jpg" alt="Serviço de manutenção e reparo em telhado residencial em Dourados" loading="lazy" width="2688" height="1512">
-        <figcaption>Manutenção</figcaption>
-      </figure>
-      <figure>
-        <img src="img/porta-pronta.jpg" alt="Porta residencial após instalação e reparo de manutenção em Dourados" loading="lazy" width="3120" height="4160">
-        <figcaption>Instalação</figcaption>
-      </figure>
+    <div class="gallery-carousel-wrapper">
+      <button type="button" class="gallery-nav-btn prev" aria-label="Ir para o serviço anterior" aria-controls="portfolio-gallery">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.04 1.96a1 1 0 0 0-1.497 1.32l.083.094L10.253 8l-4.627 4.626a1 1 0 0 0-.083 1.32l.083.094a1 1 0 0 0 1.32.084l.094-.084 5.334-5.333a1 1 0 0 0 .083-1.32l-.083-.094L7.04 1.96Z" transform="rotate(180 8 8)"/></svg>
+      </button>
+      <div class="gallery-grid" id="portfolio-gallery">
+        <figure class="comparison-figure">
+          <comparar-imagens>
+            <img slot="antes" src="img/pint-antes.jpg" alt="Parede antes do serviço de pintura residencial em Dourados" loading="lazy" decoding="async" width="3264" height="1836">
+            <img slot="depois" src="img/pint-depois.jpg" alt="Parede após o serviço de pintura residencial em Dourados" loading="lazy" decoding="async" width="3264" height="1836">
+          </comparar-imagens>
+          <figcaption>Arraste para comparar o antes e depois da pintura residencial</figcaption>
+        </figure>
+        <figure>
+          <img src="img/telhado.jpg" alt="Serviço de manutenção e reparo em telhado residencial em Dourados" loading="lazy" width="2688" height="1512">
+          <figcaption>Manutenção</figcaption>
+        </figure>
+        <figure>
+          <img src="img/porta-pronta.jpg" alt="Porta residencial após instalação e reparo de manutenção em Dourados" loading="lazy" width="3120" height="4160">
+          <figcaption>Instalação</figcaption>
+        </figure>
+      </div>
+      <button type="button" class="gallery-nav-btn next" aria-label="Ir para o próximo serviço" aria-controls="portfolio-gallery">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.04 1.96a1 1 0 0 0-1.497 1.32l.083.094L10.253 8l-4.627 4.626a1 1 0 0 0-.083 1.32l.083.094a1 1 0 0 0 1.32.084l.094-.084 5.334-5.333a1 1 0 0 0 .083-1.32l-.083-.094L7.04 1.96Z"/></svg>
+      </button>
     </div>
   </section>
 
@@ -435,6 +429,7 @@
   <script src="js/menu.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/home-feed.js" defer></script>
+  <script src="js/card-servico.js" defer></script>
   <script src="js/comparar-imagens.js" defer></script>
   <script src="js/portfolio-feed.js" defer></script>
   <script src="js/conversions.js" defer></script>

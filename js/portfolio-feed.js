@@ -64,9 +64,30 @@
     return message;
   }
 
+  function setupGalleryNavigation() {
+    const wrapper = document.querySelector(".gallery-carousel-wrapper");
+    const container = wrapper?.querySelector(".gallery-grid");
+    if (!wrapper || !container || wrapper.dataset.navigationReady === "true") return;
+
+    wrapper.dataset.navigationReady = "true";
+    wrapper.querySelector(".gallery-nav-btn.next")?.addEventListener("click", () => {
+      const card = container.querySelector("figure");
+      if (!card) return;
+      const gap = Number.parseFloat(getComputedStyle(container).columnGap) || 0;
+      container.scrollBy({ left: card.getBoundingClientRect().width + gap, behavior: "smooth" });
+    });
+    wrapper.querySelector(".gallery-nav-btn.prev")?.addEventListener("click", () => {
+      const card = container.querySelector("figure");
+      if (!card) return;
+      const gap = Number.parseFloat(getComputedStyle(container).columnGap) || 0;
+      container.scrollBy({ left: -(card.getBoundingClientRect().width + gap), behavior: "smooth" });
+    });
+  }
+
   async function carregarAntesEDepois() {
     const container = document.querySelector(".gallery-grid");
     if (!container) return;
+    setupGalleryNavigation();
 
     const loadingMessage = createStatusMessage(
       "Carregando transformações do portfólio...",
