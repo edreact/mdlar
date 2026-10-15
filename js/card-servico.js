@@ -152,8 +152,10 @@ class CardServico extends HTMLElement {
     this.description = this.shadowRoot.querySelector(".description");
     this.toggleButton = this.shadowRoot.querySelector(".toggle");
     this.titleSlot = this.shadowRoot.querySelector('slot[name="titulo"]');
+    this.lastExpandedScrollY = window.scrollY;
     this.onToggle = this.onToggle.bind(this);
     this.onRequestService = this.onRequestService.bind(this);
+    this.onWindowScroll = this.onWindowScroll.bind(this);
     this.updateToggleLabel = this.updateToggleLabel.bind(this);
   }
 
@@ -161,12 +163,14 @@ class CardServico extends HTMLElement {
     this.updateImage();
     this.toggleButton.addEventListener("click", this.onToggle);
     this.titleSlot.addEventListener("slotchange", this.updateToggleLabel);
+    window.addEventListener("scroll", this.onWindowScroll, { passive: true });
     this.updateToggleLabel();
   }
 
   disconnectedCallback() {
     this.toggleButton.removeEventListener("click", this.onToggle);
     this.titleSlot.removeEventListener("slotchange", this.updateToggleLabel);
+    window.removeEventListener("scroll", this.onWindowScroll);
   }
 
   attributeChangedCallback() {
@@ -201,7 +205,7 @@ class CardServico extends HTMLElement {
       return;
     }
 
-    const expanded = true;
+    this.lastExpandedScrollY = window.scrollY;
     this.toggleButton.setAttribute("aria-expanded", "true");
     this.toggleButton.textContent = "Solicitar este serviço";
     this.toggleButton.setAttribute(
@@ -210,8 +214,34 @@ class CardServico extends HTMLElement {
         this.titleSlot.assignedElements({ flatten: true })[0]?.textContent.trim() || "este serviço"
       }`
     );
-    this.toggleAttribute("expanded", expanded);
-    this.description.classList.toggle("expanded", expanded);
+    this.toggleAttribute("expanded", true);
+    this.description.classList.add("expanded");
+  }
+
+  onWindowScroll() {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      const scrollY = window.scrollY;
+      if (
+        this.hasAttribute("expanded") &&
+        Math.abs(scrollY - this.lastExpandedScrollY) >= 24
+      ) {
+        this.closeCard();
+      } else if (!this.hasAttribute("expanded")) {
+        this.lastExpandedScrollY = scrollY;
+      }
+    }
+  }
+
+  closeCard() {
+    this.toggleButton.setAttribute("aria-expanded", "false");
+    this.toggleButton.textContent = "Saiba mais";
+    this.toggleButton.setAttribute(
+      "aria-label",
+      `Saiba mais sobre ${this.titleSlot.assignedElements({ flatten: true })[0]?.textContent.trim() || "este serviço"}`
+    );
+    this.removeAttribute("expanded");
+    this.description.classList.remove("expanded");
+    this.lastExpandedScrollY = window.scrollY;
   }
 
   onRequestService() {
@@ -223,6 +253,8 @@ class CardServico extends HTMLElement {
       console.warn("Não foi possível localizar todos os campos do formulário de orçamento.");
       return;
     }
+
+    this.closeCard();
 
     const title = this.titleSlot
       .assignedElements({ flatten: true })

@@ -832,7 +832,7 @@ section > h2 {
   line-height: 1;
   transform: translateY(-50%);
   cursor: pointer;
-  transition: background-color 0.3s, fill 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .gallery-nav-btn svg {
@@ -847,6 +847,11 @@ section > h2 {
 
 .gallery-nav-btn.next {
   right: -1px;
+}
+
+.gallery-nav-btn:hover {
+  background-color: #111;
+  color: #fff;
 }
 
 .gallery-nav-btn:focus-visible {
