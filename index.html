@@ -234,13 +234,12 @@
   <section class="gallery">
     <h2>Antes e Depois</h2>
     <div class="gallery-grid">
-      <figure>
-        <img src="img/pint-antes.jpg" alt="Parede antes do serviço de pintura residencial em Dourados" loading="lazy" width="3264" height="1836">
-        <figcaption>Antes</figcaption>
-      </figure>
-      <figure>
-        <img src="img/pint-depois.jpg" alt="Parede após o serviço de pintura residencial em Dourados" loading="lazy" width="3264" height="1836">
-        <figcaption>Depois</figcaption>
+      <figure class="comparison-figure">
+        <comparar-imagens>
+          <img slot="antes" src="img/pint-antes.jpg" alt="Parede antes do serviço de pintura residencial em Dourados" loading="lazy" decoding="async" width="3264" height="1836">
+          <img slot="depois" src="img/pint-depois.jpg" alt="Parede após o serviço de pintura residencial em Dourados" loading="lazy" decoding="async" width="3264" height="1836">
+        </comparar-imagens>
+        <figcaption>Arraste para comparar o antes e depois da pintura residencial</figcaption>
       </figure>
       <figure>
         <img src="img/telhado.jpg" alt="Serviço de manutenção e reparo em telhado residencial em Dourados" loading="lazy" width="2688" height="1512">
@@ -436,6 +435,7 @@
   <script src="js/menu.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/home-feed.js" defer></script>
+  <script src="js/comparar-imagens.js" defer></script>
   <script src="js/conversions.js" defer></script>
   <script>
     const voltarTopo = document.getElementById("voltar-topo");

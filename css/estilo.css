@@ -644,7 +644,7 @@ section > h2 {
 .gallery-grid {
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .gallery-grid figure {
@@ -652,6 +652,23 @@ section > h2 {
   border: 1px solid var(--card-border);
   border-radius: 12px;
   overflow: hidden;
+}
+
+.gallery-grid .comparison-figure {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.gallery-grid .comparison-figure comparar-imagens {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-grid .comparison-figure img {
+  height: 100%;
+  max-width: none;
 }
 
 .gallery-grid img {
@@ -662,9 +679,14 @@ section > h2 {
 }
 
 .gallery-grid figcaption {
-  padding: 10px 12px;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.04);
   color: var(--muted-text);
+  font-family: inherit;
   font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .faq-list details {
@@ -692,10 +714,6 @@ section > h2 {
 
   .cards {
     grid-template-columns: 1fr;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .page-grid {
@@ -1366,6 +1384,10 @@ button {
 }
 
 @media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .servicos-filtros input,
   .servicos-filtros select {
     width: 100%;
