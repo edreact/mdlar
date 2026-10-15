@@ -157,7 +157,8 @@
   </a>
 
   <script>
-    const apiUrl = "https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec";
+    const apiUrl = new URL("https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec");
+    apiUrl.searchParams.set("aba", "SERVICOS");
     const fallbackImage = "https://res.cloudinary.com/dknntq75l/image/upload/v1753806676/galeria_imagens/cgvgwtx1neyt6b0cdsdc.jpg";
     const whatsappNumber = "5567981827065";
     const favoritosKey = "mdlar_servicos_favoritos";
@@ -228,32 +229,14 @@
         item.FOTO_1,
         item.FOTO_2,
         item.FOTO_3,
-        item.FOTO_4,
-        item.imagePerfil,
-        item.imageUrl,
-        item.imageUrl1,
-        item.imageUrl2,
-        item.imageUrl3,
-        item.imageUrl4,
-        item.image1,
-        item.image2,
-        item.image3,
-        item.image4,
-        item.imagem1,
-        item.imagem2,
-        item.imagem3,
-        item.imagem4,
-        item.foto1,
-        item.foto2,
-        item.foto3,
-        item.foto4
+        item.FOTO_4
       ];
       const unicos = Array.from(new Set(candidatos.filter(Boolean)));
       return unicos.slice(0, 4);
     }
 
     function coletarVideo(item) {
-      return obterTexto(item, ["VIDEO", "videoUrl", "video", "videoLink", "video1", "urlVideo", "linkVideo"]);
+      return obterTexto(item, ["VIDEO"]);
     }
 
     function montarMensagem(servico) {
@@ -331,14 +314,14 @@
     }
 
     function montarServico(item, idx) {
-      const titulo = obterTexto(item, ["TITULO", "titulo", "title", "nome", "name"]) || "Serviço realizado";
-      const descricao = limparTexto(obterTexto(item, ["DESCRICAO", "descricao", "description", "desc", "detalhes", "details"]));
-      const categoria = obterTexto(item, ["CATEGORIA", "categoria", "category", "tipo", "serviceType"]);
-      const data = obterTexto(item, ["DATA", "data", "date", "createdAt", "updatedAt", "timestamp"]);
+      const titulo = obterTexto(item, ["TITULO"]) || "Serviço realizado";
+      const descricao = limparTexto(obterTexto(item, ["DESCRICAO"]));
+      const categoria = obterTexto(item, ["CATEGORIA"]);
+      const data = obterTexto(item, ["DATA"]);
       const imagens = coletarImagens(item);
       const videoRaw = coletarVideo(item);
       const video = videoRaw ? montarVideoEmbed(videoRaw) : null;
-      const idBruto = obterTexto(item, ["ID", "id", "codigo", "code"]) || `servico-${idx + 1}`;
+      const idBruto = obterTexto(item, ["ID"]) || `servico-${idx + 1}`;
       let idSeguro = String(idBruto).toLowerCase().replace(/[^a-z0-9_-]/g, "");
       if (!idSeguro) idSeguro = `servico-${idx + 1}`;
       return {
@@ -622,10 +605,13 @@
       }
     });
 
-    fetch(apiUrl)
-      .then(res => res.json())
+    fetch(apiUrl, { method: "GET", redirect: "follow" })
+      .then(res => {
+        if (!res.ok) throw new Error(`A API respondeu com HTTP ${res.status}.`);
+        return res.json();
+      })
       .then(data => {
-        const lista = (data.saida || data.servicos || data.items || []).map((item, idx) => montarServico(item, idx));
+        const lista = (Array.isArray(data.saida) ? data.saida : []).map((item, idx) => montarServico(item, idx));
         todosServicos = lista;
         atualizarCategoriasDisponiveis(todosServicos);
         aplicarFiltros();

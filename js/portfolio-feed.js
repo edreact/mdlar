@@ -88,8 +88,7 @@
       const response = await fetch(url, {
         method: "GET",
         redirect: "follow",
-        signal: controller.signal,
-        headers: { Accept: "application/json" }
+        signal: controller.signal
       });
 
       if (!response.ok) {

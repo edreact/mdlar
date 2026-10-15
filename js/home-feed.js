@@ -2,7 +2,8 @@
   const servicosContainer = document.getElementById("sidebar-servicos-list");
   if (!servicosContainer) return;
 
-  const servicosUrl = "https://script.google.com/macros/s/AKfycbwnz3jkHDoRYzYeFnMZbQ9xAFcjhX8uEtkR7k03B-GCHAApFf1ihCg__uA6IbWSIpVp/exec";
+  const servicosUrl = new URL("https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec");
+  servicosUrl.searchParams.set("aba", "SERVICOS");
 
   function escapeHtml(valor) {
     return String(valor || "")
@@ -21,7 +22,7 @@
     const imagem = escapeHtml(escolherImagemServico(servico));
     const titulo = escapeHtml(servico.TITULO || "Serviço realizado");
     const descricao = escapeHtml(servico.DESCRICAO || "");
-    const categoria = escapeHtml(servico.CATEGORIA || servico.categoria || "");
+    const categoria = escapeHtml(servico.CATEGORIA || "");
     const id = servico.ID ? String(servico.ID).toLowerCase().replace(/[^a-z0-9_-]/g, "") : "";
     const link = id ? `servicos.html?servico=${encodeURIComponent(id)}` : "servicos.html";
 
@@ -38,8 +39,11 @@
     `;
   }
 
-  fetch(servicosUrl)
-    .then(res => res.json())
+  fetch(servicosUrl, { method: "GET", redirect: "follow" })
+    .then(res => {
+      if (!res.ok) throw new Error(`A API respondeu com HTTP ${res.status}.`);
+      return res.json();
+    })
     .then(data => {
       const lista = Array.isArray(data.saida) ? data.saida : [];
       const recentes = lista

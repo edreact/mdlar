@@ -1,45 +1,47 @@
+const API_URL = "https://script.google.com/macros/s/AKfycbytbab3mz-45fluEw6r20OGNQT3iRzIFN6VlAFSxaAkqXnxsOBXfJIU2fTckZKZGIA/exec";
+
 // Função para buscar dados da API e preencher a tabela
 async function fetchData() {
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbyXC6bT9qgdhnP4wvTOkZvH50zFTdpEntmmnm070YTlmOoYKXPD4XGM4z9tVmcIlNjW/exec');
+    const url = new URL(API_URL);
+    url.searchParams.set("aba", "SERVICOS");
+    const response = await fetch(url, { method: "GET", redirect: "follow" });
+    if (!response.ok) throw new Error(`A API respondeu com HTTP ${response.status}.`);
     const data = await response.json();
 
-    console.log(data); // Verificando a resposta da API
-
     const serviceTableBody = document.getElementById("serviceTableBody");
+    if (!serviceTableBody) return;
 
-    // Limpar tabela antes de preencher
-    serviceTableBody.innerHTML = "";
-
-    // Acessando o array 'saida' da resposta da API
-    const services = data.saida;
-
-    // Verificar se os dados existem e preencher a tabela
-    if (services && Array.isArray(services)) {
-      services.forEach(service => {
+    const services = Array.isArray(data.saida) ? data.saida : [];
+    if (services.length > 0) {
+      const fragment = document.createDocumentFragment();
+      services.forEach(item => {
         const row = document.createElement("tr");
 
         const serviceName = document.createElement("td");
-        serviceName.textContent = service.servico || 'Não disponível';
+        serviceName.textContent = item.TITULO || "Não disponível";
         row.appendChild(serviceName);
 
         const serviceDesc = document.createElement("td");
-        serviceDesc.textContent = service.descricao || 'Não disponível';
+        serviceDesc.textContent = item.DESCRICAO || "Não disponível";
         row.appendChild(serviceDesc);
 
         const servicePrice = document.createElement("td");
-        servicePrice.textContent = service.preco || 'Não disponível';
+        servicePrice.textContent = item.PRECO || "Não disponível";
         row.appendChild(servicePrice);
 
-        serviceTableBody.appendChild(row);
+        fragment.appendChild(row);
       });
+      serviceTableBody.replaceChildren(fragment);
     } else {
-      // Se não houver dados válidos
-      serviceTableBody.innerHTML = "<tr><td colspan='3'>Nenhum dado disponível.</td></tr>";
+      serviceTableBody.innerHTML = "<tr><td colspan=\"3\">Nenhum dado disponível.</td></tr>";
     }
   } catch (error) {
     console.error("Erro ao buscar os dados:", error);
-    document.getElementById("serviceTableBody").innerHTML = "<tr><td colspan='3'>Erro ao carregar dados.</td></tr>";
+    const serviceTableBody = document.getElementById("serviceTableBody");
+    if (serviceTableBody) {
+      serviceTableBody.innerHTML = "<tr><td colspan=\"3\">Erro ao carregar dados.</td></tr>";
+    }
   }
 }
 
