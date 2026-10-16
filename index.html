@@ -90,24 +90,16 @@
     </nav>
   </header>
 
-  <header class="hero" aria-label="Apresentação">
-    <div class="hero-content">
-      <h1>Serviços de Manutenção Residencial em Dourados</h1>
-      <p class="hero-subtitle">Elétrica, hidráulica, jardinagem, montagem de móveis e pequenos reparos. Orçamento rápido via WhatsApp.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#formulario">Solicitar orçamento</a>
-        <a class="btn btn-whatsapp" href="https://wa.me/5567981827065" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp</a>
-      </div>
-      <ul class="hero-badges" aria-label="Informações rápidas">
-        <li>Atendimento em Dourados, MS</li>
-        <li>Agendamento flexível</li>
-        <li>Serviço limpo e organizado</li>
-      </ul>
-      <p class="hero-contact">
-        Prefere ligação? <a href="tel:+5567981827065">(67) 98182-7065</a>
-      </p>
-    </div>
-  </header>
+  <section class="home-carousel" aria-label="Destaques de manutenção residencial" aria-roledescription="carrossel">
+    <div class="home-carousel__track" data-carousel-track aria-live="off"></div>
+    <button class="home-carousel__arrow home-carousel__arrow--previous" type="button" aria-label="Destaque anterior">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button class="home-carousel__arrow home-carousel__arrow--next" type="button" aria-label="Próximo destaque">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+    <div class="home-carousel__pagination" data-carousel-pagination role="group" aria-label="Escolher destaque"></div>
+  </section>
 
   <main class="page-grid">
     <div class="page-main">
@@ -428,6 +420,7 @@
 
   <script src="js/menu.js" defer></script>
   <script src="js/script.js" defer></script>
+  <script src="js/home-carousel.js" defer></script>
   <script src="js/home-feed.js" defer></script>
   <script src="js/card-servico.js" defer></script>
   <script src="js/comparar-imagens.js" defer></script>
