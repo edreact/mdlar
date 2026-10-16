@@ -29,8 +29,14 @@ body {
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 10px 20px 30px;
   border: 0;
+
+  .page-main,
+  .page-sidebar {
+    min-width: 0;
+  }
 }
 
 /* ======================== */
@@ -459,15 +465,15 @@ ul {
 
 .voltar-topo {
   position: fixed;
-  right: 22px;
-  bottom: 88px;
-  width: 44px;
-  height: 44px;
+  right: 20px;
+  bottom: 106px;
+  width: 56px;
+  height: 56px;
   border-radius: 999px;
   background: #000;
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 700;
   line-height: 1;
   opacity: 0;
@@ -859,6 +865,16 @@ section > h2 {
   outline-offset: 3px;
 }
 
+.gallery-nav-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .gallery-nav-btn {
+    display: inline-flex;
+  }
+}
+
 @media (min-width: 1024px) {
   .gallery-nav-btn {
     display: inline-flex;
@@ -974,8 +990,13 @@ section > h2 {
   }
 
   .page-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 10px 20px 30px;
+  }
+
+  .page-main,
+  .page-sidebar {
+    min-width: 0;
   }
 
   .services-aside {

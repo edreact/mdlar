@@ -70,6 +70,16 @@
     if (!wrapper || !container || wrapper.dataset.navigationReady === "true") return;
 
     wrapper.dataset.navigationReady = "true";
+    const previousButton = wrapper.querySelector(".gallery-nav-btn.prev");
+    const nextButton = wrapper.querySelector(".gallery-nav-btn.next");
+    if (!previousButton || !nextButton) return;
+
+    const updateButtons = () => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      previousButton.hidden = container.scrollLeft <= 1;
+      nextButton.hidden = maxScroll <= 1 || container.scrollLeft >= maxScroll - 1;
+    };
+
     wrapper.querySelector(".gallery-nav-btn.next")?.addEventListener("click", () => {
       const card = container.querySelector("figure");
       if (!card) return;
@@ -82,12 +92,17 @@
       const gap = Number.parseFloat(getComputedStyle(container).columnGap) || 0;
       container.scrollBy({ left: -(card.getBoundingClientRect().width + gap), behavior: "smooth" });
     });
+
+    container.addEventListener("scroll", updateButtons, { passive: true });
+    window.addEventListener("resize", updateButtons);
+    updateButtons();
+    return updateButtons;
   }
 
   async function carregarAntesEDepois() {
     const container = document.querySelector(".gallery-grid");
     if (!container) return;
-    setupGalleryNavigation();
+    const updateGalleryNavigation = setupGalleryNavigation();
 
     const loadingMessage = createStatusMessage(
       "Carregando transformações do portfólio...",
@@ -144,6 +159,7 @@
       );
     } finally {
       loadingMessage.remove();
+      updateGalleryNavigation?.();
     }
   }
 
