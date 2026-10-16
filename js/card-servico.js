@@ -154,7 +154,6 @@ class CardServico extends HTMLElement {
     this.titleSlot = this.shadowRoot.querySelector('slot[name="titulo"]');
     this.lastExpandedScrollY = window.scrollY;
     this.onToggle = this.onToggle.bind(this);
-    this.onRequestService = this.onRequestService.bind(this);
     this.onWindowScroll = this.onWindowScroll.bind(this);
     this.updateToggleLabel = this.updateToggleLabel.bind(this);
   }
@@ -193,29 +192,25 @@ class CardServico extends HTMLElement {
       .map(element => element.textContent.trim())
       .filter(Boolean)
       .join(" ");
+    const expanded = this.hasAttribute("expanded");
+    this.toggleButton.textContent = expanded ? "Fechar" : "Saiba mais";
     this.toggleButton.setAttribute(
       "aria-label",
-      `${this.hasAttribute("expanded") ? "Solicitar orçamento para" : "Saiba mais sobre"} ${title || "este serviço"}`
+      `${expanded ? "Fechar informações sobre" : "Saiba mais sobre"} ${title || "este serviço"}`
     );
   }
 
   onToggle() {
     if (this.toggleButton.getAttribute("aria-expanded") === "true") {
-      this.onRequestService();
+      this.closeCard();
       return;
     }
 
     this.lastExpandedScrollY = window.scrollY;
     this.toggleButton.setAttribute("aria-expanded", "true");
-    this.toggleButton.textContent = "Solicitar este serviço";
-    this.toggleButton.setAttribute(
-      "aria-label",
-      `Solicitar orçamento para ${
-        this.titleSlot.assignedElements({ flatten: true })[0]?.textContent.trim() || "este serviço"
-      }`
-    );
     this.toggleAttribute("expanded", true);
     this.description.classList.add("expanded");
+    this.updateToggleLabel();
   }
 
   onWindowScroll() {
@@ -234,40 +229,10 @@ class CardServico extends HTMLElement {
 
   closeCard() {
     this.toggleButton.setAttribute("aria-expanded", "false");
-    this.toggleButton.textContent = "Saiba mais";
-    this.toggleButton.setAttribute(
-      "aria-label",
-      `Saiba mais sobre ${this.titleSlot.assignedElements({ flatten: true })[0]?.textContent.trim() || "este serviço"}`
-    );
     this.removeAttribute("expanded");
     this.description.classList.remove("expanded");
+    this.updateToggleLabel();
     this.lastExpandedScrollY = window.scrollY;
-  }
-
-  onRequestService() {
-    const formSection = document.querySelector("#formulario");
-    const descriptionField = document.querySelector("#descricao");
-    const nameField = document.querySelector("#nome");
-
-    if (!formSection || !(descriptionField instanceof HTMLTextAreaElement) || !nameField) {
-      console.warn("Não foi possível localizar todos os campos do formulário de orçamento.");
-      return;
-    }
-
-    this.closeCard();
-
-    const title = this.titleSlot
-      .assignedElements({ flatten: true })
-      .map(element => element.textContent.trim())
-      .filter(Boolean)
-      .join(" ") || "serviço residencial";
-
-    descriptionField.value =
-      `Olá, gostaria de solicitar um orçamento e mais informações sobre o serviço de ${title}.`;
-    descriptionField.dispatchEvent(new Event("input", { bubbles: true }));
-    descriptionField.dispatchEvent(new Event("change", { bubbles: true }));
-    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    nameField.focus({ preventScroll: true });
   }
 }
 
